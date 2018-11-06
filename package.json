@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "dist/ReCaptcha.js",
   "types": "dist/ReCaptcha.d.ts",
-  "author": "WipeAir <andre.loreth@live.de>",
+  "author": "AurityLab <info@auritylab.com>",
   "license": "MIT",
   "scripts": {
     "build": "tsc",
