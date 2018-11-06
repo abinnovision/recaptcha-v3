@@ -17,7 +17,7 @@ With Yarn:
 $ yarn add recaptcha-v3
 ```
 
-## Perquisites
+## Prerequisites
 To use this package you only need a valid site key for your domain, which you can easily get [here](https://www.google.com/recaptcha).
 
 # Usage
