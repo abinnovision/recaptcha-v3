@@ -18,7 +18,7 @@ class ReCaptchaLoader {
   public static async load(siteKey: string): Promise<ReCaptchaWrapper> {
     return new Promise<ReCaptchaWrapper>((resolve, reject) => {
       // Browser environment
-      if (document === undefined)
+      if (typeof document === 'undefined')
         return reject(new ReCaptchaLoaderError('This is a library for the browser!'))
 
       // Check if grecaptcha is already registered.
