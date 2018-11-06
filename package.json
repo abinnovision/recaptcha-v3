@@ -4,7 +4,15 @@
   "main": "dist/ReCaptcha.js",
   "types": "dist/ReCaptcha.d.ts",
   "author": "AurityLab <info@auritylab.com>",
-  "license": "MIT",
+  "keywords": ["recaptcha", "recaptcha-v3", "captcha"],
+  "bugs": {
+    "url": "https://github.com/AurityLab/recaptcha-v3/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AurityLab/recaptcha-v3"
+  },
+  "license": "Apache-2.0",
   "scripts": {
     "build": "tsc",
     "demo:webpack:server": "webpack-dev-server --config demo/webpack.config.js --progress --public --host 0.0.0.0"
