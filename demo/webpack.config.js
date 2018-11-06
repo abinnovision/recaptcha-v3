@@ -3,7 +3,7 @@ const webpack = require('webpack')
 const WebpackHtmlPlugin = require('html-webpack-plugin')
 
 module.exports = {
-    entry: path.resolve(__dirname, './index.ts'),
+    entry: path.resolve(__dirname, './src/index.ts'),
 
     output: {
         path: path.resolve(__dirname, './dist'),
@@ -14,7 +14,10 @@ module.exports = {
         rules: [
             {
                 test: /\.ts$/,
-                loader: 'ts-loader'
+                loader: 'ts-loader',
+                options: {
+                    configFile: path.resolve(__dirname, '../tsconfig.json')
+                }
             },
             {
                 test: /\.js$/,
@@ -37,7 +40,7 @@ module.exports = {
     },
     plugins: [
         new WebpackHtmlPlugin({
-            template: path.resolve(__dirname, './index.html'),
+            template: path.resolve(__dirname, './src/index.html'),
             inject: true,
         })
     ],
