@@ -1,15 +1,19 @@
 {
   "name": "recaptcha-v3",
   "version": "1.0.0",
-  "main": "src/ReCaptcha.ts",
+  "main": "dist/ReCaptcha.js",
+  "types": "dist/ReCaptcha.d.ts",
   "author": "WipeAir <andre.loreth@live.de>",
   "license": "MIT",
   "scripts": {
-    "demo:webpack:development:server": "webpack-dev-server --config demo/webpack.config.js --progress --public --host 0.0.0.0"
+    "build": "tsc",
+    "demo:webpack:server": "webpack-dev-server --config demo/webpack.config.js --progress --public --host 0.0.0.0"
   },
   "devDependencies": {
+    "@auritylab/code-style-tslint": "^1.0.0",
     "html-webpack-plugin": "^3.2.0",
     "ts-loader": "^5.3.0",
+    "tslint": "^5.11.0",
     "typescript": "^3.1.6",
     "webpack": "^4.25.1",
     "webpack-cli": "^3.1.2",
