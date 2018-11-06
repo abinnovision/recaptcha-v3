@@ -1,7 +1,10 @@
 # reCAPTCHA-v3
-![NPM Package](https://badge.fury.io/js/recaptcha-v3.svg)
 
-A simple and easy to use reCAPTCHA (v3 only) library.
+![npm](https://img.shields.io/npm/v/recaptcha-v3.svg) 
+![npm type definitions](https://img.shields.io/npm/types/recaptcha-v3.svg)
+
+
+A simple and easy to use reCAPTCHA (v3 only) library for the browser.
 
 ## Install
 With NPM:
