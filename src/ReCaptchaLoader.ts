@@ -16,25 +16,23 @@ class ReCaptchaLoader {
    * @return The recaptcha wrapper.
    */
   public static async load(siteKey: string): Promise<ReCaptchaWrapper> {
-    return new Promise<ReCaptchaWrapper>((resolve, reject) => {
-      // Browser environment
-      if (typeof document === 'undefined')
-        return reject(new ReCaptchaLoaderError('This is a library for the browser!'))
+    // Browser environment
+    if (typeof document === 'undefined')
+      throw (new ReCaptchaLoaderError('This is a library for the browser!'))
 
-      // Check if grecaptcha is already registered.
-      if ((window as any).grecaptcha !== undefined)
-        return resolve(new ReCaptchaWrapper(siteKey, grecaptcha))
+    // Check if grecaptcha is already registered.
+    if ((window as any).grecaptcha !== undefined)
+      throw (new ReCaptchaWrapper(siteKey, grecaptcha))
 
-      // Throw error if the recaptcha is already loaded
-      const loader = new ReCaptchaLoader()
-      if (ReCaptchaLoader.alreadyLoaded())
-        return reject(ReCaptchaLoaderError.alreadyLoadedError())
+    // Throw error if the recaptcha is already loaded
+    const loader = new ReCaptchaLoader()
+    if (ReCaptchaLoader.alreadyLoaded())
+      throw (ReCaptchaLoaderError.alreadyLoadedError())
 
-      loader.loadScript(siteKey).then((value) => {
-        ReCaptchaLoader.setLoaded()
-        resolve(new ReCaptchaWrapper(siteKey, grecaptcha))
-      }).catch(reject)
-    })
+    await loader.loadScript(siteKey)
+
+    ReCaptchaLoader.setLoaded()
+    return new ReCaptchaWrapper(siteKey, grecaptcha)
   }
 
   /**
