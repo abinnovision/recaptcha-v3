@@ -1,5 +1,5 @@
+import {ReCaptchaInstance} from './ReCaptchaInstance'
 import {ReCaptchaLoaderError} from './ReCaptchaLoaderError'
-import {ReCaptchaWrapper} from './ReCaptchaWrapper'
 
 /**
  * This is a loader which takes care about loading the
@@ -15,14 +15,14 @@ class ReCaptchaLoader {
    * @param siteKey The site key to load the library with.
    * @return The recaptcha wrapper.
    */
-  public static async load(siteKey: string): Promise<ReCaptchaWrapper> {
+  public static async load(siteKey: string): Promise<ReCaptchaInstance> {
     // Browser environment
     if (typeof document === 'undefined')
       throw (new ReCaptchaLoaderError('This is a library for the browser!'))
 
     // Check if grecaptcha is already registered.
     if ((window as any).grecaptcha !== undefined)
-      throw (new ReCaptchaWrapper(siteKey, grecaptcha))
+      throw (new ReCaptchaInstance(siteKey, grecaptcha))
 
     // Throw error if the recaptcha is already loaded
     const loader = new ReCaptchaLoader()
@@ -32,7 +32,7 @@ class ReCaptchaLoader {
     await loader.loadScript(siteKey)
 
     ReCaptchaLoader.setLoaded()
-    return new ReCaptchaWrapper(siteKey, grecaptcha)
+    return new ReCaptchaInstance(siteKey, grecaptcha)
   }
 
   /**

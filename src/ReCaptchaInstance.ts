@@ -3,7 +3,7 @@
  *
  * Currently only wraps the "execute" function.
  */
-export class ReCaptchaWrapper {
+export class ReCaptchaInstance {
   private readonly siteKey: string
   private readonly recaptcha: IReCaptchaInstance
 
