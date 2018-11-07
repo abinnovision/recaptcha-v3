@@ -1,3 +1,5 @@
+import {IReCaptchaInstance} from './grecaptcha/grecaptcha'
+
 /**
  * A simple wrapper for the "grecaptcha" object.
  *
