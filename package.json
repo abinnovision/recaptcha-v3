@@ -1,10 +1,14 @@
 {
   "name": "recaptcha-v3",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "dist/ReCaptcha.js",
   "types": "dist/ReCaptcha.d.ts",
   "author": "AurityLab <info@auritylab.com>",
-  "keywords": ["recaptcha", "recaptcha-v3", "captcha"],
+  "keywords": [
+    "recaptcha",
+    "recaptcha-v3",
+    "captcha"
+  ],
   "bugs": {
     "url": "https://github.com/AurityLab/recaptcha-v3/issues"
   },
