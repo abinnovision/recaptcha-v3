@@ -1,5 +1,4 @@
 import {ReCaptchaInstance} from './ReCaptchaInstance'
-import {ReCaptchaLoaderError} from './ReCaptchaLoaderError'
 
 /**
  * This is a loader which takes care about loading the
@@ -10,45 +9,74 @@ import {ReCaptchaLoaderError} from './ReCaptchaLoaderError'
  */
 class ReCaptchaLoader {
   /**
-   * Lodas the recaptcha library with the given site key.
+   * Loads the recaptcha library with the given site key.
    *
    * @param siteKey The site key to load the library with.
    * @return The recaptcha wrapper.
    */
-  public static async load(siteKey: string): Promise<ReCaptchaInstance> {
+  public static load(siteKey: string): Promise<ReCaptchaInstance> {
     // Browser environment
     if (typeof document === 'undefined')
-      throw (new ReCaptchaLoaderError('This is a library for the browser!'))
+      throw new Error('This is a library for the browser!')
 
     // Check if grecaptcha is already registered.
-    if ((window as any).grecaptcha !== undefined)
-      throw (new ReCaptchaInstance(siteKey, grecaptcha))
+    if (ReCaptchaLoader.getLoadingState() === ELoadingState.LOADED)
+      return Promise.resolve(new ReCaptchaInstance(siteKey, grecaptcha))
+
+    // If the recaptcha is loading add this loader to the queue.
+    if (ReCaptchaLoader.getLoadingState() === ELoadingState.LOADING)
+      return new Promise<ReCaptchaInstance>((resolve, reject) => {
+        ReCaptchaLoader.successfulLoadingConsumers.push((instance: ReCaptchaInstance) => resolve(instance))
+        ReCaptchaLoader.errorLoadingRunnable.push((reason: any) => reject())
+      })
+
+    ReCaptchaLoader.setLoadingState(ELoadingState.LOADING)
 
     // Throw error if the recaptcha is already loaded
     const loader = new ReCaptchaLoader()
-    if (ReCaptchaLoader.alreadyLoaded())
-      throw (ReCaptchaLoaderError.alreadyLoadedError())
+    return new Promise((resolve, reject) => {
+      loader.loadScript(siteKey).then(() => {
+        ReCaptchaLoader.setLoadingState(ELoadingState.LOADED)
 
-    await loader.loadScript(siteKey)
+        const instance = new ReCaptchaInstance(siteKey, grecaptcha)
+        ReCaptchaLoader.successfulLoadingConsumers.forEach((v) => v(instance))
+        ReCaptchaLoader.successfulLoadingConsumers = []
+        resolve(instance)
+      }).catch((error) => {
+        ReCaptchaLoader.errorLoadingRunnable.forEach((v) => v(error))
+        ReCaptchaLoader.errorLoadingRunnable = []
+        reject(error)
+      })
+    })
+  }
 
-    ReCaptchaLoader.setLoaded()
-    return new ReCaptchaInstance(siteKey, grecaptcha)
+  private static stateAttributeName = 'recaptcha-v3-state'
+  private static successfulLoadingConsumers: Array<(instance: ReCaptchaInstance) => void> = []
+  private static errorLoadingRunnable: Array<(reason: any) => void> = []
+
+  /**
+   * Will set the loading state of the recaptcha script.
+   *
+   * @param state New loading state for the loading process.
+   */
+  private static setLoadingState(state: ELoadingState) {
+    document.documentElement.setAttribute(ReCaptchaLoader.stateAttributeName, state as any as string)
   }
 
   /**
-   * Checks if the recaptcha is already loaded.
-   * The check is based on an attribute ob the "<html>" element.
+   * Will return the current loading state. If no loading state is globally set
+   * the NO_LOADED state is set as default.
    */
-  private static alreadyLoaded(): boolean {
-    return document.documentElement.hasAttribute('recaptcha-v3-loaded')
-  }
+  private static getLoadingState(): ELoadingState {
+    const element = document.documentElement
 
-  /**
-   * Globally saves that recaptcha has been loaded.
-   * Will set a special attribute to the "<html>" element.
-   */
-  private static setLoaded(): void {
-    document.documentElement.setAttribute('recaptcha-v3-loaded', '')
+    if (element.hasAttribute(ReCaptchaLoader.stateAttributeName)) {
+      const val = parseInt(element.getAttribute(ReCaptchaLoader.stateAttributeName), 10)
+      if (isNaN(val))
+        return ELoadingState.NOT_LOADED
+      return val
+    } else
+      return ELoadingState.NOT_LOADED
   }
 
   /**
@@ -74,9 +102,6 @@ class ReCaptchaLoader {
    * @param siteKey The site key to load the library with.
    */
   private loadScript(siteKey: string): Promise<HTMLScriptElement> {
-    if (ReCaptchaLoader.hasReCaptchaScript())
-      throw ReCaptchaLoaderError.alreadyLoadedError()
-
     // Create script element
     const scriptElement: HTMLScriptElement = document.createElement('script')
     scriptElement.setAttribute('recaptcha-v3-script', '')
@@ -87,7 +112,7 @@ class ReCaptchaLoader {
         resolve(scriptElement)
       }), false)
       scriptElement.onerror = (error) => {
-        reject(new ReCaptchaLoaderError('Something went wrong while loading ReCaptcha. (' + error.toString() + ')'))
+        reject(new Error('Something went wrong while loading ReCaptcha. (' + error.toString() + ')'))
       }
       document.head.appendChild(scriptElement)
     })
@@ -113,6 +138,12 @@ class ReCaptchaLoader {
         })
     }
   }
+}
+
+enum ELoadingState {
+  NOT_LOADED,
+  LOADING,
+  LOADED,
 }
 
 /**
