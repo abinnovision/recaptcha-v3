@@ -105,7 +105,7 @@ class ReCaptchaLoader {
     // Create script element
     const scriptElement: HTMLScriptElement = document.createElement('script')
     scriptElement.setAttribute('recaptcha-v3-script', '')
-    scriptElement.src = 'https://www.google.com/recaptcha/api.js?render=' + siteKey
+    scriptElement.src = 'https://recaptcha.net/recaptcha/api.js?render=' + siteKey
 
     return new Promise<HTMLScriptElement>((resolve, reject) => {
       scriptElement.addEventListener('load', this.waitForScriptToLoad(() => {
