@@ -44,3 +44,24 @@ async function asyncFunction() {
   console.log(token) // Will also print the token
 }
 ```
+
+## Loader options
+The loader takes care of loading the reCAPTCHA script from Google.
+Therefore the loader offers optional options for additional configuration:
+
+|Name|Description|Type|Default value
+|----|-----------|----|-------------
+|**useRecaptchaNet**|Due to limitations in certain countries it's required to use `recaptcha.net` instead of `google.com`.|*boolean*|`false` 
+
+### Usage
+To use the options just pass an additional object to the `load(...)` method.
+For example:
+```javascript
+import { load } from 'recaptcha-v3'
+
+load('<site key>', {
+  useRecaptchaNet: true
+}).then((recaptcha) => {
+  
+})
+```
