@@ -12,9 +12,10 @@ class ReCaptchaLoader {
    * Loads the recaptcha library with the given site key.
    *
    * @param siteKey The site key to load the library with.
+   * @param options The options for the loader
    * @return The recaptcha wrapper.
    */
-  public static load(siteKey: string): Promise<ReCaptchaInstance> {
+  public static load(siteKey: string, options: IReCaptchaLoaderOptions = {}): Promise<ReCaptchaInstance> {
     // Browser environment
     if (typeof document === 'undefined')
       throw new Error('This is a library for the browser!')
@@ -35,7 +36,7 @@ class ReCaptchaLoader {
     // Throw error if the recaptcha is already loaded
     const loader = new ReCaptchaLoader()
     return new Promise((resolve, reject) => {
-      loader.loadScript(siteKey).then(() => {
+      loader.loadScript(siteKey, options.useRecaptchaNet || false).then(() => {
         ReCaptchaLoader.setLoadingState(ELoadingState.LOADED)
 
         const instance = new ReCaptchaInstance(siteKey, grecaptcha)
@@ -100,12 +101,18 @@ class ReCaptchaLoader {
    * and append it to the "<head>" element.
    *
    * @param siteKey The site key to load the library with.
+   * @param useRecaptchaNet If the loader should use "recaptcha.net" instead of "google.com"
    */
-  private loadScript(siteKey: string): Promise<HTMLScriptElement> {
+  private loadScript(siteKey: string, useRecaptchaNet: boolean = false): Promise<HTMLScriptElement> {
     // Create script element
     const scriptElement: HTMLScriptElement = document.createElement('script')
     scriptElement.setAttribute('recaptcha-v3-script', '')
-    scriptElement.src = 'https://www.google.com/recaptcha/api.js?render=' + siteKey
+
+    let scriptBase = 'https://www.google.com/recaptcha/api.js'
+    if (useRecaptchaNet)
+      scriptBase = 'https://recaptcha.net/recaptcha/api.js'
+
+    scriptElement.src = scriptBase + '?render=' + siteKey
 
     return new Promise<HTMLScriptElement>((resolve, reject) => {
       scriptElement.addEventListener('load', this.waitForScriptToLoad(() => {
@@ -144,6 +151,19 @@ enum ELoadingState {
   NOT_LOADED,
   LOADING,
   LOADED,
+}
+
+/**
+ * An interface for all available options for the
+ * reCAPTCHA loader.
+ */
+export interface IReCaptchaLoaderOptions {
+  /**
+   * By default the loader uses "google.com", with this
+   * option set to `true` it will use "recaptcha.net".
+   * (See: https://github.com/AurityLab/recaptcha-v3/pull/2)
+   */
+  useRecaptchaNet?: boolean
 }
 
 /**
