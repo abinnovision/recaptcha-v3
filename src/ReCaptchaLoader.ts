@@ -42,6 +42,11 @@ class ReCaptchaLoader {
         const instance = new ReCaptchaInstance(siteKey, grecaptcha)
         ReCaptchaLoader.successfulLoadingConsumers.forEach((v) => v(instance))
         ReCaptchaLoader.successfulLoadingConsumers = []
+
+        // Check for auto hide badge option
+        if (options.autoHideBadge || false)
+          instance.hideBadge()
+
         resolve(instance)
       }).catch((error) => {
         ReCaptchaLoader.errorLoadingRunnable.forEach((v) => v(error))
@@ -163,7 +168,16 @@ export interface IReCaptchaLoaderOptions {
    * option set to `true` it will use "recaptcha.net".
    * (See: https://github.com/AurityLab/recaptcha-v3/pull/2)
    */
-  useRecaptchaNet?: boolean
+  useRecaptchaNet?: boolean,
+
+  /**
+   * Will automatically hide the badge after loading
+   * recaptcha. Warning: The usage of this option is only
+   * allowed if you follow the official guide for hiding
+   * the badge from Google:
+   * https://developers.google.com/recaptcha/docs/faq#id-like-to-hide-the-recaptcha-v3-badge-what-is-allowedl
+   */
+  autoHideBadge?: boolean
 }
 
 /**
