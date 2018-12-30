@@ -150,7 +150,7 @@ class ReCaptchaLoader {
 enum ELoadingState {
   NOT_LOADED,
   LOADING,
-  LOADED,
+  LOADED
 }
 
 /**
