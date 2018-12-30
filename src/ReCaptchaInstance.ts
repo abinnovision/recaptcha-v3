@@ -19,8 +19,10 @@ export class ReCaptchaInstance {
    *
    * @param action The action to execute with.
    */
-  public async execute(action: string): Promise<string> {
-    return this.recaptcha.execute(this.siteKey, {action})
+  public execute(action: string): Promise<string> {
+    return new Promise<string>((resolve, reject) => {
+      this.recaptcha.execute(this.siteKey, {action}).then(resolve).catch(reject)
+    })
   }
 
   /**
