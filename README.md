@@ -51,7 +51,8 @@ Therefore the loader offers optional options for additional configuration:
 
 |Name|Description|Type|Default value
 |----|-----------|----|-------------
-|**useRecaptchaNet**|Due to limitations in certain countries it's required to use `recaptcha.net` instead of `google.com`.|*boolean*|`false` 
+|**useRecaptchaNet**|Due to limitations in certain countries it's required to use `recaptcha.net` instead of `google.com`.|*boolean*|`false`
+|**autoHideBadge**|Will automatically hide the reCAPTCHA badge. Warning: The usage is only allowed if you follow the offical guide for hiding the badge from Google ([see here](https://developers.google.com/recaptcha/docs/faq#id-like-to-hide-the-recaptcha-v3-badge-what-is-allowed))|*boolean*|`false`
 
 ### Usage
 To use the options just pass an additional object to the `load(...)` method.
@@ -60,7 +61,8 @@ For example:
 import { load } from 'recaptcha-v3'
 
 load('<site key>', {
-  useRecaptchaNet: true
+  useRecaptchaNet: true,
+  autoHideBadge: true
 }).then((recaptcha) => {
   
 })
