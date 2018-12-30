@@ -21,7 +21,7 @@ export class ReCaptchaInstance {
    */
   public execute(action: string): Promise<string> {
     return new Promise<string>((resolve, reject) => {
-      this.recaptcha.execute(this.siteKey, {action}).then(resolve).catch(reject)
+      this.recaptcha.execute(this.siteKey, {action}).then(resolve, reject)
     })
   }
 
