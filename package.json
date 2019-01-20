@@ -1,13 +1,10 @@
 {
   "name": "recaptcha-v3",
   "version": "1.2.2",
-  "main": "dist/ReCaptcha.js",
-  "types": "dist/ReCaptcha.d.ts",
-  "author": "AurityLab <info@auritylab.com>",
   "keywords": [
+    "captcha",
     "recaptcha",
-    "recaptcha-v3",
-    "captcha"
+    "recaptcha-v3"
   ],
   "bugs": {
     "url": "https://github.com/AurityLab/recaptcha-v3/issues"
@@ -17,12 +14,24 @@
     "url": "https://github.com/AurityLab/recaptcha-v3"
   },
   "license": "Apache-2.0",
+  "author": "AurityLab <info@auritylab.com>",
+  "files": [
+    "/dist",
+    "/README.md",
+    "/LICENSE"
+  ],
+  "main": "dist/ReCaptcha.js",
+  "types": "dist/ReCaptcha.d.ts",
   "scripts": {
     "build": "tsc",
-    "demo:webpack:server": "webpack-dev-server --config demo/webpack.config.js --progress --public --host 0.0.0.0"
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run",
+    "demo": "webpack-dev-server --config demo/webpack.config.js --progress --public --host 0.0.0.0 --port 30399"
   },
   "devDependencies": {
     "@auritylab/tslint-config-base": "^1.0.1",
+    "@cypress/webpack-preprocessor": "^4.0.3",
+    "cypress": "^3.1.4",
     "html-webpack-plugin": "^3.2.0",
     "ts-loader": "^5.3.0",
     "tslint": "^5.11.0",
@@ -30,10 +39,5 @@
     "webpack": "^4.25.1",
     "webpack-cli": "^3.1.2",
     "webpack-dev-server": "^3.1.10"
-  },
-  "files": [
-    "/dist",
-    "/README.md",
-    "/LICENSE"
-  ]
+  }
 }

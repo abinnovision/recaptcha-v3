@@ -226,3 +226,6 @@ $RECYCLE.BIN/
 *.lnk
 
 dist/
+
+cypress/videos
+cypress/screenshots
