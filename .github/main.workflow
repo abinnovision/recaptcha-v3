@@ -9,7 +9,8 @@ action "Install dependencies" {
 }
 
 action "Cypress tests" {
-  uses = "nuxt/actions-yarn@master"
+  uses = "docker://cypress/browsers:chrome69"
   needs = ["Install dependencies"]
+  runs = "yarn"
   args = "cypress:run"
 }
