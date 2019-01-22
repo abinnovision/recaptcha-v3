@@ -4,7 +4,7 @@
 [![npm type definitions](https://img.shields.io/npm/types/recaptcha-v3.svg)](https://www.npmjs.com/package/recaptcha-v3)
 
 
-A simple and easy to use reCAPTCHA (v3 only) library for the browser.
+A simple and easy to use reCAPTCHA (v3 only) library for the browser. (You may be also interested in [wrapper libraries](#wrapper-libraries))
 
 ## Install
 With NPM:
@@ -67,3 +67,7 @@ load('<site key>', {
   
 })
 ```
+
+## Wrapper libraries
+Wrapper libraries are available for:
+* Vue.js plugin ([vue-recaptcha-v3](https://github.com/AurityLab/vue-recaptcha-v3) / [npm](https://www.npmjs.com/package/vue-recaptcha-v3))
