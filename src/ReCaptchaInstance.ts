@@ -28,6 +28,14 @@ export class ReCaptchaInstance {
   }
 
   /**
+   * Will return the site key, with which the reCAPTCHA
+   * has been initialized.
+   */
+  public getSiteKey(): string {
+    return this.siteKey
+  }
+
+  /**
    * Hides all badges on the current page.
    *
    * Warning: The usage of this method is only allowed if you follow
