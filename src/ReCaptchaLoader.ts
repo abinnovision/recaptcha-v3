@@ -56,7 +56,6 @@ class ReCaptchaLoader {
     })
   }
 
-  private static stateAttributeName = 'recaptcha-v3-state'
   private static successfulLoadingConsumers: Array<(instance: ReCaptchaInstance) => void> = []
   private static errorLoadingRunnable: Array<(reason: any) => void> = []
 
@@ -66,7 +65,7 @@ class ReCaptchaLoader {
    * @param state New loading state for the loading process.
    */
   private static setLoadingState(state: ELoadingState) {
-    document.documentElement.setAttribute(ReCaptchaLoader.stateAttributeName, state as any as string)
+    window.__reCAPTCHAv3state = state
   }
 
   /**
@@ -74,14 +73,9 @@ class ReCaptchaLoader {
    * the NO_LOADED state is set as default.
    */
   private static getLoadingState(): ELoadingState {
-    const element = document.documentElement
-
-    if (element.hasAttribute(ReCaptchaLoader.stateAttributeName)) {
-      const val = parseInt(element.getAttribute(ReCaptchaLoader.stateAttributeName), 10)
-      if (isNaN(val))
-        return ELoadingState.NOT_LOADED
-      return val
-    } else
+    if (window.__reCAPTCHAv3state !== undefined && window.__reCAPTCHAv3state !== null)
+      return window.__reCAPTCHAv3state
+    else
       return ELoadingState.NOT_LOADED
   }
 
@@ -156,6 +150,17 @@ enum ELoadingState {
   NOT_LOADED,
   LOADING,
   LOADED
+}
+
+/**
+ * Augment window interface to accept the reCAPTCHA
+ * state.
+ */
+declare global {
+  // tslint:disable-next-line:interface-name
+  interface Window {
+    __reCAPTCHAv3state: ELoadingState
+  }
 }
 
 /**
