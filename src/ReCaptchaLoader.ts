@@ -18,19 +18,32 @@ class ReCaptchaLoader {
   public static load(siteKey: string, options: IReCaptchaLoaderOptions = {}): Promise<ReCaptchaInstance> {
     // Browser environment
     if (typeof document === 'undefined')
-      throw new Error('This is a library for the browser!')
+      return Promise.reject(new Error('This is a library for the browser!'))
 
     // Check if grecaptcha is already registered.
     if (ReCaptchaLoader.getLoadingState() === ELoadingState.LOADED)
-      return Promise.resolve(new ReCaptchaInstance(siteKey, grecaptcha))
+    // Check if the site key is equal to the already loaded instance
+      if (ReCaptchaLoader.instance.getSiteKey() === siteKey)
+      // Resolve existing instance
+        return Promise.resolve(ReCaptchaLoader.instance)
+      else
+      // Reject because site keys are different
+        return Promise.reject(new Error('reCAPTCHA already loaded with different site key!'))
 
     // If the recaptcha is loading add this loader to the queue.
-    if (ReCaptchaLoader.getLoadingState() === ELoadingState.LOADING)
+    if (ReCaptchaLoader.getLoadingState() === ELoadingState.LOADING) {
+      // Check if the site key is equal to the current loading site key
+      if (siteKey !== ReCaptchaLoader.instanceSiteKey)
+        return Promise.reject('reCAPTCHA already loaded with different site key!')
+
       return new Promise<ReCaptchaInstance>((resolve, reject) => {
         ReCaptchaLoader.successfulLoadingConsumers.push((instance: ReCaptchaInstance) => resolve(instance))
         ReCaptchaLoader.errorLoadingRunnable.push((reason: any) => reject())
       })
+    }
 
+    // Set states
+    ReCaptchaLoader.instanceSiteKey = siteKey
     ReCaptchaLoader.setLoadingState(ELoadingState.LOADING)
 
     // Throw error if the recaptcha is already loaded
@@ -47,6 +60,7 @@ class ReCaptchaLoader {
         if (options.autoHideBadge || false)
           instance.hideBadge()
 
+        ReCaptchaLoader.instance = instance
         resolve(instance)
       }).catch((error) => {
         ReCaptchaLoader.errorLoadingRunnable.forEach((v) => v(error))
@@ -55,6 +69,14 @@ class ReCaptchaLoader {
       })
     })
   }
+
+  public static getInstance(): ReCaptchaInstance {
+    return ReCaptchaLoader.instance
+  }
+
+  private static loadingState: ELoadingState = null
+  private static instance: ReCaptchaInstance = null
+  private static instanceSiteKey: string = null
 
   private static successfulLoadingConsumers: Array<(instance: ReCaptchaInstance) => void> = []
   private static errorLoadingRunnable: Array<(reason: any) => void> = []
@@ -65,7 +87,7 @@ class ReCaptchaLoader {
    * @param state New loading state for the loading process.
    */
   private static setLoadingState(state: ELoadingState) {
-    window.__reCAPTCHAv3state = state
+    ReCaptchaLoader.loadingState = state
   }
 
   /**
@@ -73,25 +95,10 @@ class ReCaptchaLoader {
    * the NO_LOADED state is set as default.
    */
   private static getLoadingState(): ELoadingState {
-    if (window.__reCAPTCHAv3state !== undefined && window.__reCAPTCHAv3state !== null)
-      return window.__reCAPTCHAv3state
-    else
+    if (ReCaptchaLoader.loadingState === null)
       return ELoadingState.NOT_LOADED
-  }
-
-  /**
-   * Checks if the "<head>" element already contains an recaptcha script.
-   */
-  private static hasReCaptchaScript(): boolean {
-    const scripts = document.head.getElementsByTagName('script')
-
-    for (let i = 0; i < scripts.length; i++) {
-      const script = scripts[i]
-      if (script.hasAttribute('recaptcha-v3-script'))
-        return true
-    }
-
-    return false
+    else
+      return ReCaptchaLoader.loadingState
   }
 
   /**
@@ -137,7 +144,7 @@ class ReCaptchaLoader {
       if ((window as any).grecaptcha === undefined)
         setTimeout(() => {
           this.waitForScriptToLoad(callback)
-        }, 100)
+        }, 25)
       else
         (window as any).grecaptcha.ready(() => {
           callback()
@@ -150,17 +157,6 @@ enum ELoadingState {
   NOT_LOADED,
   LOADING,
   LOADED
-}
-
-/**
- * Augment window interface to accept the reCAPTCHA
- * state.
- */
-declare global {
-  // tslint:disable-next-line:interface-name
-  interface Window {
-    __reCAPTCHAv3state: ELoadingState
-  }
 }
 
 /**
@@ -186,7 +182,8 @@ export interface IReCaptchaLoaderOptions {
 }
 
 /**
- * Only export the recaptcha load method directly to
+ * Only export the recaptcha load and getInstance method to
  * avoid confusion with the class constructor.
  */
 export const load = ReCaptchaLoader.load
+export const getInstance = ReCaptchaLoader.getInstance
