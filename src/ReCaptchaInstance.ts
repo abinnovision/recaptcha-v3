@@ -8,10 +8,12 @@ import {IReCaptchaInstance} from './grecaptcha/grecaptcha'
 export class ReCaptchaInstance {
   private readonly siteKey: string
   private readonly recaptcha: IReCaptchaInstance
+  private styleContainer: HTMLStyleElement
 
   public constructor(siteKey: string, recaptcha: IReCaptchaInstance) {
     this.siteKey = siteKey
     this.recaptcha = recaptcha
+    this.styleContainer = null
   }
 
   /**
@@ -33,35 +35,22 @@ export class ReCaptchaInstance {
    * https://developers.google.com/recaptcha/docs/faq#id-like-to-hide-the-recaptcha-v3-badge-what-is-allowedl
    */
   public hideBadge(): void {
-    const badges = this.findBadges()
+    if (this.styleContainer !== null)
+      return
 
-    badges.forEach((badge) => {
-      badge.style.display = 'none'
-    })
+    this.styleContainer = document.createElement('style')
+    this.styleContainer.innerHTML = '.grecaptcha-badge{display:none;}'
+    document.head.appendChild(this.styleContainer)
   }
 
   /**
    * Shows the badge again after hiding it.
    */
   public showBadge(): void {
-    const badges = this.findBadges()
+    if (this.styleContainer === null)
+      return
 
-    badges.forEach((badge) => {
-      badge.style.display = 'block'
-    })
-  }
-
-  /**
-   * Searches for all available reCAPTCHA badges
-   * and returns them.
-   *
-   * @return All reCAPTCHA badges as an array.
-   */
-  private findBadges(): HTMLElement[] {
-    const foundElements = Array.from(document.getElementsByClassName('grecaptcha-badge'))
-
-    return foundElements.filter((value) => {
-      return value instanceof HTMLElement
-    }).map((value) => value as HTMLElement)
+    document.head.removeChild(this.styleContainer)
+    this.styleContainer = null
   }
 }
