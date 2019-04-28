@@ -49,7 +49,8 @@ class ReCaptchaLoader {
     // Throw error if the recaptcha is already loaded
     const loader = new ReCaptchaLoader()
     return new Promise((resolve, reject) => {
-      loader.loadScript(siteKey, options.useRecaptchaNet || false).then(() => {
+      loader.loadScript(siteKey, options.useRecaptchaNet || false,
+        options.renderParameters || {}).then(() => {
         ReCaptchaLoader.setLoadingState(ELoadingState.LOADED)
 
         const instance = new ReCaptchaInstance(siteKey, grecaptcha)
@@ -108,8 +109,10 @@ class ReCaptchaLoader {
    *
    * @param siteKey The site key to load the library with.
    * @param useRecaptchaNet If the loader should use "recaptcha.net" instead of "google.com"
+   * @param renderParameters Additional parameters for reCAPTCHA.
    */
-  private loadScript(siteKey: string, useRecaptchaNet: boolean = false): Promise<HTMLScriptElement> {
+  private loadScript(siteKey: string, useRecaptchaNet: boolean = false,
+                     renderParameters: { [key: string]: string } = {}): Promise<HTMLScriptElement> {
     // Create script element
     const scriptElement: HTMLScriptElement = document.createElement('script')
     scriptElement.setAttribute('recaptcha-v3-script', '')
@@ -118,7 +121,10 @@ class ReCaptchaLoader {
     if (useRecaptchaNet)
       scriptBase = 'https://recaptcha.net/recaptcha/api.js'
 
-    scriptElement.src = scriptBase + '?render=' + siteKey
+    // Build parameter query string
+    const parametersQuery = this.buildQueryString(renderParameters)
+
+    scriptElement.src = scriptBase + '?render=' + siteKey + parametersQuery
 
     return new Promise<HTMLScriptElement>((resolve, reject) => {
       scriptElement.addEventListener('load', this.waitForScriptToLoad(() => {
@@ -128,6 +134,26 @@ class ReCaptchaLoader {
         reject(new Error('Something went wrong while loading ReCaptcha. (' + error.toString() + ')'))
       }
       document.head.appendChild(scriptElement)
+    })
+  }
+
+  /**
+   * Will build a query string from the given parameters and return
+   * the built string. If parameters has no keys it will just return
+   * an empty string.
+   *
+   * @param parameters Object to build query string from.
+   */
+  private buildQueryString(parameters: { [key: string]: string }) {
+    const parameterKeys = Object.keys(parameters)
+
+    // If there are no parameters just return an empty string.
+    if (parameterKeys.length < 1)
+      return ''
+
+    // Build the actual query string (KEY=VALUE).
+    return '&' + Object.keys(parameters).map((parameterKey) => {
+      return parameterKey + '=' + parameters[parameterKey]
     })
   }
 
@@ -178,7 +204,16 @@ export interface IReCaptchaLoaderOptions {
    * the badge from Google:
    * https://developers.google.com/recaptcha/docs/faq#id-like-to-hide-the-recaptcha-v3-badge-what-is-allowedl
    */
-  autoHideBadge?: boolean
+  autoHideBadge?: boolean,
+
+  /**
+   * Defines additional parameters for the rendering process.
+   * The parameters should be defined as key/value pair.
+   *
+   * Known possible parameters:
+   * `hl` -> Will set the language of the badge.
+   */
+  renderParameters?: { [key: string]: string }
 }
 
 /**
