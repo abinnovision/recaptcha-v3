@@ -531,9 +531,9 @@
     date-fns "^1.27.2"
     figures "^1.7.0"
 
-"@cypress/webpack-preprocessor@^4.0.4":
-  version "4.0.4"
-  resolved "https://registry.yarnpkg.com/@cypress/webpack-preprocessor/-/webpack-preprocessor-4.0.4.tgz#404727f4ed4f83630f87da4a521e5854ec92c284"
+"@cypress/webpack-preprocessor@^4.1.0":
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/@cypress/webpack-preprocessor/-/webpack-preprocessor-4.1.0.tgz#8c4debc0b1abf045b62524d1996dd9aeaf7e86a8"
   dependencies:
     bluebird "3.5.0"
     debug "3.1.0"
