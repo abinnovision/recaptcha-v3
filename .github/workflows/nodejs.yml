@@ -19,4 +19,5 @@ jobs:
         yarn install
     - name: Crypress tests
       uses: docker://cypress/browsers:chrome69
-      runs: yarn cypress:run
+      entrypoint: yarn
+      args: cypress:run
