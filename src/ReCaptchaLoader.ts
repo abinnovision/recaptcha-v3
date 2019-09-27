@@ -158,7 +158,7 @@ class ReCaptchaLoader {
     // Build the actual query string (KEY=VALUE).
     return '&' + Object.keys(parameters).map((parameterKey) => {
       return parameterKey + '=' + parameters[parameterKey]
-    })
+    }).join('&')
   }
 
   /**
