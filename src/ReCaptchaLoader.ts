@@ -3,7 +3,7 @@ import { ReCaptchaInstance } from './ReCaptchaInstance'
 enum ELoadingState {
   NOT_LOADED,
   LOADING,
-  LOADED
+  LOADED,
 }
 
 /**
@@ -14,6 +14,15 @@ enum ELoadingState {
  * prevents loading the recaptcha script multiple times.
  */
 class ReCaptchaLoader {
+  private static loadingState: ELoadingState = null
+  private static instance: ReCaptchaInstance = null
+  private static instanceSiteKey: string = null
+
+  private static successfulLoadingConsumers: Array<(instance: ReCaptchaInstance) => void> = []
+  private static errorLoadingRunnable: Array<(reason: Error) => void> = []
+
+  private static readonly SCRIPT_LOAD_DELAY = 25
+
   /**
    * Loads the recaptcha library with the given site key.
    *
@@ -41,11 +50,13 @@ class ReCaptchaLoader {
     // If the recaptcha is loading add this loader to the queue.
     if (ReCaptchaLoader.getLoadingState() === ELoadingState.LOADING) {
       // Check if the site key is equal to the current loading site key
-      if (siteKey !== ReCaptchaLoader.instanceSiteKey) { return Promise.reject(new Error('reCAPTCHA already loaded with different site key!')) }
+      if (siteKey !== ReCaptchaLoader.instanceSiteKey) {
+        return Promise.reject(new Error('reCAPTCHA already loaded with different site key!'))
+      }
 
       return new Promise<ReCaptchaInstance>((resolve, reject) => {
         ReCaptchaLoader.successfulLoadingConsumers.push((instance: ReCaptchaInstance) => resolve(instance))
-        ReCaptchaLoader.errorLoadingRunnable.push((reason: any) => reject(reason))
+        ReCaptchaLoader.errorLoadingRunnable.push((reason: Error) => reject(reason))
       })
     }
 
@@ -83,13 +94,6 @@ class ReCaptchaLoader {
     return ReCaptchaLoader.instance
   }
 
-  private static loadingState: ELoadingState = null
-  private static instance: ReCaptchaInstance = null
-  private static instanceSiteKey: string = null
-
-  private static successfulLoadingConsumers: Array<(instance: ReCaptchaInstance) => void> = []
-  private static errorLoadingRunnable: Array<(reason: any) => void> = []
-
   /**
    * Will set the loading state of the recaptcha script.
    *
@@ -104,7 +108,11 @@ class ReCaptchaLoader {
    * the NO_LOADED state is set as default.
    */
   private static getLoadingState (): ELoadingState {
-    if (ReCaptchaLoader.loadingState === null) { return ELoadingState.NOT_LOADED } else { return ReCaptchaLoader.loadingState }
+    if (ReCaptchaLoader.loadingState === null) {
+      return ELoadingState.NOT_LOADED
+    } else {
+      return ReCaptchaLoader.loadingState
+    }
   }
 
   /**
@@ -171,12 +179,12 @@ class ReCaptchaLoader {
    */
   private waitForScriptToLoad (callback: () => void) {
     return () => {
-      if ((window as any).grecaptcha === undefined) {
+      if (window.grecaptcha === undefined) {
         setTimeout(() => {
           this.waitForScriptToLoad(callback)
-        }, 25)
+        }, ReCaptchaLoader.SCRIPT_LOAD_DELAY)
       } else {
-        (window as any).grecaptcha.ready(() => {
+        window.grecaptcha.ready(() => {
           callback()
         })
       }
