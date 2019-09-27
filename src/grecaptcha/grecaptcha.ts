@@ -1,5 +1,9 @@
 declare global {
   const grecaptcha: IReCaptchaInstance
+
+  interface Window {
+    grecaptcha: IReCaptchaInstance
+  }
 }
 
 export interface IReCaptchaInstance {
