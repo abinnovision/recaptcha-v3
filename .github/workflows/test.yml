@@ -1,9 +1,7 @@
-name: Node CI
+name: Test
 
 on:
-  push:
-    branches:
-    - master
+- push
 
 jobs:
   test:
