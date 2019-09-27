@@ -1,3 +1,3 @@
-export {load, getInstance} from './ReCaptchaLoader'
+export { load, getInstance } from './ReCaptchaLoader'
 
-export {ReCaptchaInstance} from './ReCaptchaInstance'
+export { ReCaptchaInstance } from './ReCaptchaInstance'

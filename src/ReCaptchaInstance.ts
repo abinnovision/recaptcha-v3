@@ -1,4 +1,4 @@
-import {IReCaptchaInstance} from './grecaptcha/grecaptcha'
+import { IReCaptchaInstance } from './grecaptcha/grecaptcha'
 
 /**
  * A simple wrapper for the "grecaptcha" object.
@@ -10,7 +10,7 @@ export class ReCaptchaInstance {
   private readonly recaptcha: IReCaptchaInstance
   private styleContainer: HTMLStyleElement
 
-  public constructor(siteKey: string, recaptcha: IReCaptchaInstance) {
+  public constructor (siteKey: string, recaptcha: IReCaptchaInstance) {
     this.siteKey = siteKey
     this.recaptcha = recaptcha
     this.styleContainer = null
@@ -21,17 +21,15 @@ export class ReCaptchaInstance {
    *
    * @param action The action to execute with.
    */
-  public execute(action: string): Promise<string> {
-    return new Promise<string>((resolve, reject) => {
-      this.recaptcha.execute(this.siteKey, {action}).then(resolve, reject)
-    })
+  public async execute (action: string): Promise<string> {
+    return this.recaptcha.execute(this.siteKey, { action })
   }
 
   /**
    * Will return the site key, with which the reCAPTCHA
    * has been initialized.
    */
-  public getSiteKey(): string {
+  public getSiteKey (): string {
     return this.siteKey
   }
 
@@ -42,9 +40,8 @@ export class ReCaptchaInstance {
    * the official guide for hiding the badge from Google:
    * https://developers.google.com/recaptcha/docs/faq#id-like-to-hide-the-recaptcha-v3-badge-what-is-allowedl
    */
-  public hideBadge(): void {
-    if (this.styleContainer !== null)
-      return
+  public hideBadge (): void {
+    if (this.styleContainer !== null) { return }
 
     this.styleContainer = document.createElement('style')
     this.styleContainer.innerHTML = '.grecaptcha-badge{display:none !important;}'
@@ -54,9 +51,8 @@ export class ReCaptchaInstance {
   /**
    * Shows the badge again after hiding it.
    */
-  public showBadge(): void {
-    if (this.styleContainer === null)
-      return
+  public showBadge (): void {
+    if (this.styleContainer === null) { return }
 
     document.head.removeChild(this.styleContainer)
     this.styleContainer = null
