@@ -15,6 +15,9 @@ jobs:
     - name: Install dependencies
       run: |
         yarn install
+    - name: Lint
+      run: |
+        yarn lint
     - name: Crypress tests
       run: |
         yarn cypress:run
