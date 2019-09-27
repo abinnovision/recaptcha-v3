@@ -1,5 +1,11 @@
 import { ReCaptchaInstance } from './ReCaptchaInstance'
 
+enum ELoadingState {
+  NOT_LOADED,
+  LOADING,
+  LOADED
+}
+
 /**
  * This is a loader which takes care about loading the
  * official recaptcha script (https://www.google.com/recaptcha/api.js).
@@ -15,29 +21,31 @@ class ReCaptchaLoader {
    * @param options The options for the loader
    * @return The recaptcha wrapper.
    */
+  // eslint-disable-next-line @typescript-eslint/promise-function-async
   public static load (siteKey: string, options: IReCaptchaLoaderOptions = {}): Promise<ReCaptchaInstance> {
     // Browser environment
     if (typeof document === 'undefined') { return Promise.reject(new Error('This is a library for the browser!')) }
 
     // Check if grecaptcha is already registered.
-    if (ReCaptchaLoader.getLoadingState() === ELoadingState.LOADED)
+    if (ReCaptchaLoader.getLoadingState() === ELoadingState.LOADED) {
     // Check if the site key is equal to the already loaded instance
-    {
-      if (ReCaptchaLoader.instance.getSiteKey() === siteKey)
-      // Resolve existing instance
-      { return Promise.resolve(ReCaptchaLoader.instance) } else
-      // Reject because site keys are different
-      { return Promise.reject(new Error('reCAPTCHA already loaded with different site key!')) }
+      if (ReCaptchaLoader.instance.getSiteKey() === siteKey) {
+        // Resolve existing instance
+        return Promise.resolve(ReCaptchaLoader.instance)
+      } else {
+        // Reject because site keys are different
+        return Promise.reject(new Error('reCAPTCHA already loaded with different site key!'))
+      }
     }
 
     // If the recaptcha is loading add this loader to the queue.
     if (ReCaptchaLoader.getLoadingState() === ELoadingState.LOADING) {
       // Check if the site key is equal to the current loading site key
-      if (siteKey !== ReCaptchaLoader.instanceSiteKey) { return Promise.reject('reCAPTCHA already loaded with different site key!') }
+      if (siteKey !== ReCaptchaLoader.instanceSiteKey) { return Promise.reject(new Error('reCAPTCHA already loaded with different site key!')) }
 
       return new Promise<ReCaptchaInstance>((resolve, reject) => {
         ReCaptchaLoader.successfulLoadingConsumers.push((instance: ReCaptchaInstance) => resolve(instance))
-        ReCaptchaLoader.errorLoadingRunnable.push((reason: any) => reject())
+        ReCaptchaLoader.errorLoadingRunnable.push((reason: any) => reject(reason))
       })
     }
 
@@ -48,8 +56,8 @@ class ReCaptchaLoader {
     // Throw error if the recaptcha is already loaded
     const loader = new ReCaptchaLoader()
     return new Promise((resolve, reject) => {
-      loader.loadScript(siteKey, options.useRecaptchaNet || false,
-        options.renderParameters || {}).then(() => {
+      // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+      loader.loadScript(siteKey, options.useRecaptchaNet || false, options.renderParameters ? options.renderParameters : {}).then(() => {
         ReCaptchaLoader.setLoadingState(ELoadingState.LOADED)
 
         const instance = new ReCaptchaInstance(siteKey, grecaptcha)
@@ -57,7 +65,9 @@ class ReCaptchaLoader {
         ReCaptchaLoader.successfulLoadingConsumers = []
 
         // Check for auto hide badge option
-        if (options.autoHideBadge || false) { instance.hideBadge() }
+        if (options.autoHideBadge) {
+          instance.hideBadge()
+        }
 
         ReCaptchaLoader.instance = instance
         resolve(instance)
@@ -85,7 +95,7 @@ class ReCaptchaLoader {
    *
    * @param state New loading state for the loading process.
    */
-  private static setLoadingState (state: ELoadingState) {
+  private static setLoadingState (state: ELoadingState): void {
     ReCaptchaLoader.loadingState = state
   }
 
@@ -106,6 +116,7 @@ class ReCaptchaLoader {
    * @param useRecaptchaNet If the loader should use "recaptcha.net" instead of "google.com"
    * @param renderParameters Additional parameters for reCAPTCHA.
    */
+  // eslint-disable-next-line @typescript-eslint/promise-function-async
   private loadScript (siteKey: string, useRecaptchaNet: boolean = false,
     renderParameters: { [key: string]: string } = {}): Promise<HTMLScriptElement> {
     // Create script element
@@ -138,7 +149,7 @@ class ReCaptchaLoader {
    *
    * @param parameters Object to build query string from.
    */
-  private buildQueryString (parameters: { [key: string]: string }) {
+  private buildQueryString (parameters: { [key: string]: string }): string {
     const parameterKeys = Object.keys(parameters)
 
     // If there are no parameters just return an empty string.
@@ -171,12 +182,6 @@ class ReCaptchaLoader {
       }
     }
   }
-}
-
-enum ELoadingState {
-  NOT_LOADED,
-  LOADING,
-  LOADED
 }
 
 /**
