@@ -4,7 +4,6 @@
 [![npm type definitions](https://img.shields.io/npm/types/recaptcha-v3.svg)](https://www.npmjs.com/package/recaptcha-v3)
 [![Standard](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
-
 A simple and easy to use reCAPTCHA (v3 only) library for the browser. (You may be also interested in [wrapper libraries](#wrapper-libraries))
 
 ## Install
