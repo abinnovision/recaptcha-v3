@@ -7,22 +7,27 @@
 A simple and easy to use reCAPTCHA (v3 only) library for the browser. (You may be also interested in [wrapper libraries](#wrapper-libraries))
 
 ## Install
+
 With NPM:
+
 ```bash
 $ npm install recaptcha-v3
 ```
 
 With Yarn:
+
 ```bash
 $ yarn add recaptcha-v3
 ```
 
 ## Prerequisites
+
 To use this package you only need a valid site key for your domain, which you can easily get [here](https://www.google.com/recaptcha).
 
 ## Usage
 
 With promises:
+
 ```javascript
 import { load } from 'recaptcha-v3'
 
@@ -34,6 +39,7 @@ load('<site key>').then((recaptcha) => {
 ```
 
 With async/await:
+
 ```javascript
 import { load } from 'recaptcha-v3'
 
@@ -46,18 +52,21 @@ async function asyncFunction() {
 ```
 
 ## Loader options
+
 The loader takes care of loading the reCAPTCHA script from Google.
 Therefore the loader offers optional options for additional configuration:
 
-|Name|Description|Type|Default value
-|----|-----------|----|-------------
-|**useRecaptchaNet**|Due to limitations in certain countries it's required to use `recaptcha.net` instead of `google.com`.|*boolean*|`false`
-|**autoHideBadge**|Will automatically hide the reCAPTCHA badge. Warning: The usage is only allowed if you follow the offical guide for hiding the badge from Google ([see here](https://developers.google.com/recaptcha/docs/faq#id-like-to-hide-the-recaptcha-v3-badge-what-is-allowed))|*boolean*|`false`
-|**renderParameters**|Will add the given parameters to the reCAPTCHA script. The given object will be converted into a query string and will then be added to the URL.|Object|`{}`
+| Name                 | Description                                                                                                                                                                                                                                                            | Type      | Default value |
+| -------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------- | ------------- |
+| **useRecaptchaNet**  | Due to limitations in certain countries it's required to use `recaptcha.net` instead of `google.com`.                                                                                                                                                                  | _boolean_ | `false`       |
+| **autoHideBadge**    | Will automatically hide the reCAPTCHA badge. Warning: The usage is only allowed if you follow the offical guide for hiding the badge from Google ([see here](https://developers.google.com/recaptcha/docs/faq#id-like-to-hide-the-recaptcha-v3-badge-what-is-allowed)) | _boolean_ | `false`       |
+| **renderParameters** | Will add the given parameters to the reCAPTCHA script. The given object will be converted into a query string and will then be added to the URL.                                                                                                                       | Object    | `{}`          |
 
-### Usage
+### Load options usage
+
 To use the options just pass an additional object to the `load(...)` method.
 For example:
+
 ```javascript
 import { load } from 'recaptcha-v3'
 
@@ -65,10 +74,12 @@ load('<site key>', {
   useRecaptchaNet: true,
   autoHideBadge: true
 }).then((recaptcha) => {
-  
+
 })
 ```
 
 ## Wrapper libraries
+
 Wrapper libraries are available for:
-* Vue.js plugin ([vue-recaptcha-v3](https://github.com/AurityLab/vue-recaptcha-v3) / [npm](https://www.npmjs.com/package/vue-recaptcha-v3))
+
+-   Vue.js plugin ([vue-recaptcha-v3](https://github.com/AurityLab/vue-recaptcha-v3) / [npm](https://www.npmjs.com/package/vue-recaptcha-v3))
