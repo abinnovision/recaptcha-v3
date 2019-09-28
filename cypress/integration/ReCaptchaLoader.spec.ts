@@ -1,4 +1,4 @@
-/* tslint:disable:no-unused-expression */
+/* eslint-disable no-unused-expressions,@typescript-eslint/no-floating-promises */
 import { ReCaptchaInstance } from '../../src/ReCaptchaInstance'
 import { getInstance, load } from '../../src/ReCaptchaLoader'
 
@@ -40,31 +40,26 @@ describe('ReCaptchaLoader', () => {
   })
 
   describe('Simultaneous loading', () => {
-    it('should load recaptcha once', () => {
-      return new Promise((resolve, reject) => {
-        Promise.all([
-          load(testingSiteKey),
-          load(testingSiteKey)
-        ]).then((instances) => {
-          expect(instances).lengthOf(2)
-          expect(instances[0]).not.null
-          expect(instances[1]).not.null
-
-          expect(instances[0]).to.eq(instances[1])
-
-          resolve()
-        })
-      })
-    })
-    it('should throw an error, because of different site key', () => {
-      return new Promise((resolve) => {
+    it('should load recaptcha once', async () => {
+      const instances = await Promise.all([
+        load(testingSiteKey),
         load(testingSiteKey)
+      ])
 
-        load('asdf').catch((reason) => {
-          expect(reason).not.null
-          resolve()
-        })
-      })
+      expect(instances).lengthOf(2)
+      expect(instances[0]).not.null
+      expect(instances[1]).not.null
+
+      expect(instances[0]).to.eq(instances[1])
+    })
+    it('should throw an error, because of different site key', async () => {
+      load(testingSiteKey)
+
+      try {
+        await load('asdf')
+      } catch (e) {
+        expect(e).not.null
+      }
     })
   })
 
@@ -80,16 +75,14 @@ describe('ReCaptchaLoader', () => {
       })
     })
 
-    it('should throw an error, because of different site key', () => {
-      return new Promise((resolve) => {
-        load(testingSiteKey).then((instance) => {
-          load('asdf').catch((rejectReason) => {
-            expect(rejectReason).not.null
+    it('should throw an error, because of different site key', async () => {
+      await load(testingSiteKey)
 
-            resolve()
-          })
-        })
-      })
+      try {
+        await load('asdf')
+      } catch (e) {
+        expect(e).not.null
+      }
     })
   })
 })
