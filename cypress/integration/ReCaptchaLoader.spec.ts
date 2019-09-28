@@ -1,6 +1,6 @@
 /* tslint:disable:no-unused-expression */
-import {ReCaptchaInstance} from '../../src/ReCaptchaInstance'
-import {getInstance, load} from '../../src/ReCaptchaLoader'
+import { ReCaptchaInstance } from '../../src/ReCaptchaInstance'
+import { getInstance, load } from '../../src/ReCaptchaLoader'
 
 const testingSiteKey = '6LfC6HgUAAAAAEtG92bYRzwYkczElxq7WkCoG4Ob'
 
@@ -11,7 +11,7 @@ describe('ReCaptchaLoader', () => {
     })
   })
 
-  it ('should load get instance', () => {
+  it('should load get instance', () => {
     load(testingSiteKey).then((value) => {
       expect(value).not.null
 
@@ -46,7 +46,6 @@ describe('ReCaptchaLoader', () => {
           load(testingSiteKey),
           load(testingSiteKey)
         ]).then((instances) => {
-
           expect(instances).lengthOf(2)
           expect(instances[0]).not.null
           expect(instances[1]).not.null
@@ -57,7 +56,7 @@ describe('ReCaptchaLoader', () => {
         })
       })
     })
-    it ('should throw an error, because of different site key', () => {
+    it('should throw an error, because of different site key', () => {
       return new Promise((resolve) => {
         load(testingSiteKey)
 
@@ -70,7 +69,7 @@ describe('ReCaptchaLoader', () => {
   })
 
   describe('Synchronous loading', () => {
-    it ('should load recaptcha once', () => {
+    it('should load recaptcha once', () => {
       load(testingSiteKey).then((instance) => {
         expect(instance).not.null
 
@@ -81,10 +80,9 @@ describe('ReCaptchaLoader', () => {
       })
     })
 
-    it ('should throw an error, because of different site key', () => {
+    it('should throw an error, because of different site key', () => {
       return new Promise((resolve) => {
         load(testingSiteKey).then((instance) => {
-
           load('asdf').catch((rejectReason) => {
             expect(rejectReason).not.null
 
