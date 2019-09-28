@@ -1,6 +1,10 @@
 {
   "extends": "standard-with-typescript",
   "parserOptions": {
-    "project": "./tsconfig.json"
+    "project": [
+      "./tsconfig.json",
+      "./demo/tsconfig.json",
+      "./cypress/tsconfig.json"
+    ]
   }
 }
