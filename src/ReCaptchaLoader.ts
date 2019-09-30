@@ -68,7 +68,7 @@ class ReCaptchaLoader {
     const loader = new ReCaptchaLoader()
     return new Promise((resolve, reject) => {
       // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
-      loader.loadScript(siteKey, options.useRecaptchaNet || false, options.renderParameters ? options.renderParameters : {}).then(() => {
+      loader.loadScript(siteKey, options.useRecaptchaNet || false, options.renderParameters ? options.renderParameters : {}, options.customUrl).then(() => {
         ReCaptchaLoader.setLoadingState(ELoadingState.LOADED)
 
         const instance = new ReCaptchaInstance(siteKey, grecaptcha)
@@ -123,16 +123,18 @@ class ReCaptchaLoader {
    * @param siteKey The site key to load the library with.
    * @param useRecaptchaNet If the loader should use "recaptcha.net" instead of "google.com"
    * @param renderParameters Additional parameters for reCAPTCHA.
+   * @param customUrl If the loader custom URL insted of the official recaptcha URLs
    */
   // eslint-disable-next-line @typescript-eslint/promise-function-async
   private loadScript (siteKey: string, useRecaptchaNet: boolean = false,
-    renderParameters: { [key: string]: string } = {}): Promise<HTMLScriptElement> {
+    renderParameters: { [key: string]: string } = {}, customUrl: string = ''): Promise<HTMLScriptElement> {
     // Create script element
     const scriptElement: HTMLScriptElement = document.createElement('script')
     scriptElement.setAttribute('recaptcha-v3-script', '')
 
     let scriptBase = 'https://www.google.com/recaptcha/api.js'
     if (useRecaptchaNet) { scriptBase = 'https://recaptcha.net/recaptcha/api.js' }
+    if (customUrl) { scriptBase = customUrl }
 
     // Build parameter query string
     const parametersQuery = this.buildQueryString(renderParameters)
@@ -222,6 +224,13 @@ export interface IReCaptchaLoaderOptions {
    * `hl` -> Will set the language of the badge.
    */
   renderParameters?: { [key: string]: string }
+
+  /**
+   * Defines a custom url for ReCaptcha JS file.
+   * Useful when self hosting or proxied ReCaptcha JS file.
+   * https://github.com/AurityLab/recaptcha-v3/issues/76
+   */
+  customUrl?: string
 }
 
 /**
