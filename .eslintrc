@@ -6,5 +6,8 @@
       "./demo/tsconfig.json",
       "./cypress/tsconfig.json"
     ]
+  },
+  "rules": {
+    "@typescript-eslint/strict-boolean-expressions": "off"
   }
 }
