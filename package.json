@@ -31,7 +31,7 @@
   },
   "devDependencies": {
     "@auritylab/tslint-config-base": "^1.0.1",
-    "@cypress/webpack-preprocessor": "^4.1.0",
+    "@cypress/webpack-preprocessor": "^4.1.1",
     "@typescript-eslint/eslint-plugin": "2",
     "cypress": "^3.6.1",
     "eslint": "6",
