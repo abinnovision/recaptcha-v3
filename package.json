@@ -35,7 +35,7 @@
     "@typescript-eslint/eslint-plugin": "2",
     "cypress": "^3.6.1",
     "eslint": "6",
-    "eslint-config-standard-with-typescript": "^10.0.0",
+    "eslint-config-standard-with-typescript": "^11.0.1",
     "eslint-plugin-import": "2",
     "eslint-plugin-node": "10",
     "eslint-plugin-promise": "4",
