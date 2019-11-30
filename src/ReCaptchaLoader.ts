@@ -147,7 +147,7 @@ class ReCaptchaLoader {
       }), false)
       scriptElement.onerror = (error) => {
         ReCaptchaLoader.setLoadingState(ELoadingState.NOT_LOADED)
-        reject(new Error('Something went wrong while loading ReCaptcha. (' + error.toString() + ')'))
+        reject(error)
       }
       document.head.appendChild(scriptElement)
     })
