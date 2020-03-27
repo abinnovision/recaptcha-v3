@@ -7,7 +7,7 @@ import { IReCaptchaInstance } from './grecaptcha/grecaptcha'
  */
 export class ReCaptchaInstance {
   private readonly siteKey: string
-  private readonly recaptcha: IReCaptchaInstance
+  public readonly recaptcha: IReCaptchaInstance
   private styleContainer: HTMLStyleElement
 
   public constructor (siteKey: string, recaptcha: IReCaptchaInstance) {
