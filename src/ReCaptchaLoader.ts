@@ -1,3 +1,4 @@
+import { IReCaptchaInstance, IRenderParameters } from './grecaptcha/grecaptcha'
 import { ReCaptchaInstance } from './ReCaptchaInstance'
 
 enum ELoadingState {
@@ -33,11 +34,13 @@ class ReCaptchaLoader {
   // eslint-disable-next-line @typescript-eslint/promise-function-async
   public static load (siteKey: string, options: IReCaptchaLoaderOptions = {}): Promise<ReCaptchaInstance> {
     // Browser environment
-    if (typeof document === 'undefined') { return Promise.reject(new Error('This is a library for the browser!')) }
+    if (typeof document === 'undefined') {
+      return Promise.reject(new Error('This is a library for the browser!'))
+    }
 
     // Check if grecaptcha is already registered.
     if (ReCaptchaLoader.getLoadingState() === ELoadingState.LOADED) {
-    // Check if the site key is equal to the already loaded instance
+      // Check if the site key is equal to the already loaded instance
       if (ReCaptchaLoader.instance.getSiteKey() === siteKey) {
         // Resolve existing instance
         return Promise.resolve(ReCaptchaLoader.instance)
@@ -71,7 +74,10 @@ class ReCaptchaLoader {
       loader.loadScript(siteKey, options.useRecaptchaNet || false, options.renderParameters ? options.renderParameters : {}, options.customUrl).then(() => {
         ReCaptchaLoader.setLoadingState(ELoadingState.LOADED)
 
-        const instance = new ReCaptchaInstance(siteKey, grecaptcha)
+        // Render the ReCaptcha widget.
+        const widgetID = loader.doExplicitRender(grecaptcha, siteKey, options.explicitRenderParameters ? options.explicitRenderParameters : {})
+
+        const instance = new ReCaptchaInstance(siteKey, widgetID, grecaptcha)
         ReCaptchaLoader.successfulLoadingConsumers.forEach((v) => v(instance))
         ReCaptchaLoader.successfulLoadingConsumers = []
 
@@ -133,13 +139,22 @@ class ReCaptchaLoader {
     scriptElement.setAttribute('recaptcha-v3-script', '')
 
     let scriptBase = 'https://www.google.com/recaptcha/api.js'
-    if (useRecaptchaNet) { scriptBase = 'https://recaptcha.net/recaptcha/api.js' }
-    if (customUrl) { scriptBase = customUrl }
+    if (useRecaptchaNet) {
+      scriptBase = 'https://recaptcha.net/recaptcha/api.js'
+    }
+    if (customUrl) {
+      scriptBase = customUrl
+    }
+
+    // Remove the 'render' property.
+    if (renderParameters.render) {
+      renderParameters.render = undefined
+    }
 
     // Build parameter query string
     const parametersQuery = this.buildQueryString(renderParameters)
 
-    scriptElement.src = scriptBase + '?render=' + siteKey + parametersQuery
+    scriptElement.src = scriptBase + '?render=explicit' + parametersQuery
 
     return new Promise<HTMLScriptElement>((resolve, reject) => {
       scriptElement.addEventListener('load', this.waitForScriptToLoad(() => {
@@ -164,12 +179,18 @@ class ReCaptchaLoader {
     const parameterKeys = Object.keys(parameters)
 
     // If there are no parameters just return an empty string.
-    if (parameterKeys.length < 1) { return '' }
+    if (parameterKeys.length < 1) {
+      return ''
+    }
 
     // Build the actual query string (KEY=VALUE).
-    return '&' + Object.keys(parameters).map((parameterKey) => {
-      return parameterKey + '=' + parameters[parameterKey]
-    }).join('&')
+    return '&' + Object.keys(parameters)
+      .filter((parameterKey) => {
+        return !!parameters[parameterKey]
+      })
+      .map((parameterKey) => {
+        return parameterKey + '=' + parameters[parameterKey]
+      }).join('&')
   }
 
   /**
@@ -191,6 +212,30 @@ class ReCaptchaLoader {
           callback()
         })
       }
+    }
+  }
+
+  /**
+   * Will render explicitly render the ReCaptcha.
+   * @param grecaptcha The grecaptcha instance to use for the rendering.
+   * @param siteKey The sitekey to render.
+   * @param parameters The parameters for the rendering process.
+   * @return The id of the rendered widget.
+   */
+  private doExplicitRender (grecaptcha: IReCaptchaInstance, siteKey: string, parameters: IReCaptchaExplicitRenderParameters): string {
+    // Split the given parameters into a matching interface for the grecaptcha.render function.
+    const augmentedParameters: IRenderParameters = {
+      sitekey: siteKey,
+      badge: parameters.badge,
+      size: parameters.size,
+      tabindex: parameters.tabindex
+    }
+
+    // Differ if an explicit container element is given.
+    if (parameters.container) {
+      return grecaptcha.render(parameters.container, augmentedParameters)
+    } else {
+      return grecaptcha.render(augmentedParameters)
     }
   }
 }
@@ -226,11 +271,27 @@ export interface IReCaptchaLoaderOptions {
   renderParameters?: { [key: string]: string }
 
   /**
+   * Defines the additional parameters for the explicit rendering process.
+   */
+  explicitRenderParameters?: IReCaptchaExplicitRenderParameters
+
+  /**
    * Defines a custom url for ReCaptcha JS file.
    * Useful when self hosting or proxied ReCaptcha JS file.
    * https://github.com/AurityLab/recaptcha-v3/issues/76
    */
   customUrl?: string
+}
+
+/**
+ * Describes the parameters for the explicit rendering call. This gives the possibility to set explicit positioning
+ * for the badge.
+ */
+export interface IReCaptchaExplicitRenderParameters {
+  container?: string | Element
+  badge?: 'bottomright' | 'bottomleft' | 'inline'
+  size?: 'invisible'
+  tabindex?: number
 }
 
 /**
