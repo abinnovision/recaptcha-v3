@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-expressions,@typescript-eslint/no-floating-promises */
-import { ReCaptchaInstance } from '../../src/ReCaptchaInstance'
-import { getInstance, load } from '../../src/ReCaptchaLoader'
+import {ReCaptchaInstance} from '../../src/ReCaptchaInstance'
+import {getInstance, load} from '../../src/ReCaptchaLoader'
 
 const testingSiteKey = '6LfC6HgUAAAAAEtG92bYRzwYkczElxq7WkCoG4Ob'
 
@@ -83,6 +83,61 @@ describe('ReCaptchaLoader', () => {
       } catch (e) {
         expect(e).not.null
       }
+    })
+  })
+
+  describe('Explicit render parameters', () => {
+    it('should load with `bottomleft` badge', () => {
+      load(testingSiteKey, {
+        explicitRenderParameters: {
+          badge: 'bottomleft'
+        }
+      }).then((value) => {
+        expect(value).not.null
+      })
+    })
+
+    it('should load with `bottomright` badge', () => {
+      load(testingSiteKey, {
+        explicitRenderParameters: {
+          badge: 'bottomright'
+        }
+      }).then((value) => {
+        expect(value).not.null
+      })
+    })
+
+    it('should load with `inline` badge', () => {
+      load(testingSiteKey, {
+        explicitRenderParameters: {
+          badge: 'inline'
+        }
+      }).then((value) => {
+        expect(value).not.null
+      })
+    })
+
+    it('should load with `inline` badge, `invisible` size', () => {
+      load(testingSiteKey, {
+        explicitRenderParameters: {
+          badge: 'inline',
+          size: 'invisible'
+        }
+      }).then((value) => {
+        expect(value).not.null
+      })
+    })
+  })
+
+  describe('Render parameters', () => {
+    it('should load with `hl` parameter', () => {
+      load(testingSiteKey, {
+        renderParameters: {
+          hl: 'en'
+        }
+      }).then((value) => {
+        expect(value).not.null
+      })
     })
   })
 })
