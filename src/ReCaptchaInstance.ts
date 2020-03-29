@@ -7,11 +7,13 @@ import { IReCaptchaInstance } from './grecaptcha/grecaptcha'
  */
 export class ReCaptchaInstance {
   private readonly siteKey: string
+  private readonly recaptchaID: string
   private readonly recaptcha: IReCaptchaInstance
   private styleContainer: HTMLStyleElement
 
-  public constructor (siteKey: string, recaptcha: IReCaptchaInstance) {
+  public constructor (siteKey: string, recaptchaID: string, recaptcha: IReCaptchaInstance) {
     this.siteKey = siteKey
+    this.recaptchaID = recaptchaID
     this.recaptcha = recaptcha
     this.styleContainer = null
   }
@@ -22,7 +24,7 @@ export class ReCaptchaInstance {
    * @param action The action to execute with.
    */
   public async execute (action: string): Promise<string> {
-    return this.recaptcha.execute(this.siteKey, { action })
+    return this.recaptcha.execute(this.recaptchaID, { action })
   }
 
   /**
