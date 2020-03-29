@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-expressions,@typescript-eslint/no-floating-promises */
-import {ReCaptchaInstance} from '../../src/ReCaptchaInstance'
-import {getInstance, load} from '../../src/ReCaptchaLoader'
+import { ReCaptchaInstance } from '../../src/ReCaptchaInstance'
+import { getInstance, load } from '../../src/ReCaptchaLoader'
 
 const testingSiteKey = '6LfC6HgUAAAAAEtG92bYRzwYkczElxq7WkCoG4Ob'
 
