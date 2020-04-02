@@ -56,11 +56,12 @@ async function asyncFunction() {
 The loader takes care of loading the reCAPTCHA script from Google.
 Therefore the loader offers optional options for additional configuration:
 
-| Name                 | Description                                                                                                                                                                                                                                                            | Type      | Default value |
-| -------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------- | ------------- |
-| **useRecaptchaNet**  | Due to limitations in certain countries it's required to use `recaptcha.net` instead of `google.com`.                                                                                                                                                                  | _boolean_ | `false`       |
-| **autoHideBadge**    | Will automatically hide the reCAPTCHA badge. Warning: The usage is only allowed if you follow the offical guide for hiding the badge from Google ([see here](https://developers.google.com/recaptcha/docs/faq#id-like-to-hide-the-recaptcha-v3-badge-what-is-allowed)) | _boolean_ | `false`       |
-| **renderParameters** | Will add the given parameters to the reCAPTCHA script. The given object will be converted into a query string and will then be added to the URL.                                                                                                                       | Object    | `{}`          |
+| Name                         | Description                                                                                                                                                                                                                                                            | Type      | Default value |
+| ---------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------- | ------------- |
+| **useRecaptchaNet**          | Due to limitations in certain countries it's required to use `recaptcha.net` instead of `google.com`.                                                                                                                                                                  | _boolean_ | `false`       |
+| **autoHideBadge**            | Will automatically hide the reCAPTCHA badge. Warning: The usage is only allowed if you follow the offical guide for hiding the badge from Google ([see here](https://developers.google.com/recaptcha/docs/faq#id-like-to-hide-the-recaptcha-v3-badge-what-is-allowed)) | _boolean_ | `false`       |
+| **renderParameters**         | Will add the given parameters to the reCAPTCHA script. The given object will be converted into a query string and will then be added to the URL.                                                                                                                       | Object    | `{}`          |
+| **explicitRenderParameters** | Will set the parameters to the explicit rendering. [See here](#explicit-render-parameters)                                                                                                                                                                             | Object    | `{}`          |
 
 ### Load options usage
 
@@ -76,7 +77,17 @@ load('<site key>', {
 }).then((recaptcha) => {
 
 })
-```
+``` 
+### Explicit render parameters
+The ReCaptcha widget will be explicity loaded, which means you can add parameters to the rendering process.
+
+| Name | Description | Type |
+| ---- | ----------- | ---- |
+| *container* | The container if you want to render the inline widget | `string` or `Element` |
+| *badge* | The positioning for the widget | `'bottomright'` or `'bottomleft'` or `'inline'` |
+| *size* | The size of the widget | `'invisible'` |
+| *tabindex* | The tab index of the widget | `number` | 
+
 
 ## Wrapper libraries
 
