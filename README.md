@@ -83,10 +83,10 @@ The ReCaptcha widget will be explicity loaded, which means you can add parameter
 
 | Name | Description | Type |
 | ---- | ----------- | ---- |
-| *container* | The container if you want to render the inline widget | `string` or `Element` |
-| *badge* | The positioning for the widget | `'bottomright'` or `'bottomleft'` or `'inline'` |
-| *size* | The size of the widget | `'invisible'` |
-| *tabindex* | The tab index of the widget | `number` | 
+| **container** | The container if you want to render the inline widget | `string` or `Element` |
+| **badge** | The positioning for the widget | `'bottomright'` or `'bottomleft'` or `'inline'` |
+| **size** | The size of the widget | `'invisible'` |
+| **tabindex** | The tab index of the widget | `number` | 
 
 
 ## Wrapper libraries
