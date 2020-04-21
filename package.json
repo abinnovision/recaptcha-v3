@@ -41,7 +41,7 @@
     "eslint-plugin-promise": "4",
     "eslint-plugin-standard": "4",
     "html-webpack-plugin": "^4.2.0",
-    "ts-loader": "^7.0.0",
+    "ts-loader": "^7.0.1",
     "typescript": "^3.8.3",
     "webpack": "^4.42.1",
     "webpack-cli": "^3.3.11",
