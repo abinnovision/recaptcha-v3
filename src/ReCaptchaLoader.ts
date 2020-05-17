@@ -1,5 +1,5 @@
-import { IReCaptchaInstance, IRenderParameters } from './grecaptcha/grecaptcha'
-import { ReCaptchaInstance } from './ReCaptchaInstance'
+import {IReCaptchaInstance, IRenderParameters} from './grecaptcha/grecaptcha'
+import {ReCaptchaInstance} from './ReCaptchaInstance'
 
 enum ELoadingState {
   NOT_LOADED,
@@ -32,7 +32,7 @@ class ReCaptchaLoader {
    * @return The recaptcha wrapper.
    */
   // eslint-disable-next-line @typescript-eslint/promise-function-async
-  public static load (siteKey: string, options: IReCaptchaLoaderOptions = {}): Promise<ReCaptchaInstance> {
+  public static load(siteKey: string, options: IReCaptchaLoaderOptions = {}): Promise<ReCaptchaInstance> {
     // Browser environment
     if (typeof document === 'undefined') {
       return Promise.reject(new Error('This is a library for the browser!'))
@@ -96,7 +96,7 @@ class ReCaptchaLoader {
     })
   }
 
-  public static getInstance (): ReCaptchaInstance {
+  public static getInstance(): ReCaptchaInstance {
     return ReCaptchaLoader.instance
   }
 
@@ -105,7 +105,7 @@ class ReCaptchaLoader {
    *
    * @param state New loading state for the loading process.
    */
-  private static setLoadingState (state: ELoadingState): void {
+  private static setLoadingState(state: ELoadingState): void {
     ReCaptchaLoader.loadingState = state
   }
 
@@ -113,7 +113,7 @@ class ReCaptchaLoader {
    * Will return the current loading state. If no loading state is globally set
    * the NO_LOADED state is set as default.
    */
-  private static getLoadingState (): ELoadingState {
+  private static getLoadingState(): ELoadingState {
     if (ReCaptchaLoader.loadingState === null) {
       return ELoadingState.NOT_LOADED
     } else {
@@ -132,8 +132,8 @@ class ReCaptchaLoader {
    * @param customUrl If the loader custom URL insted of the official recaptcha URLs
    */
   // eslint-disable-next-line @typescript-eslint/promise-function-async
-  private loadScript (siteKey: string, useRecaptchaNet: boolean = false,
-    renderParameters: { [key: string]: string } = {}, customUrl: string = ''): Promise<HTMLScriptElement> {
+  private loadScript(siteKey: string, useRecaptchaNet = false,
+                     renderParameters: { [key: string]: string } = {}, customUrl = ''): Promise<HTMLScriptElement> {
     // Create script element
     const scriptElement: HTMLScriptElement = document.createElement('script')
     scriptElement.setAttribute('recaptcha-v3-script', '')
@@ -160,7 +160,7 @@ class ReCaptchaLoader {
       scriptElement.addEventListener('load', this.waitForScriptToLoad(() => {
         resolve(scriptElement)
       }), false)
-      scriptElement.onerror = (error) => {
+      scriptElement.onerror = (error): void => {
         ReCaptchaLoader.setLoadingState(ELoadingState.NOT_LOADED)
         reject(error)
       }
@@ -175,7 +175,7 @@ class ReCaptchaLoader {
    *
    * @param parameters Object to build query string from.
    */
-  private buildQueryString (parameters: { [key: string]: string }): string {
+  private buildQueryString(parameters: { [key: string]: string }): string {
     const parameterKeys = Object.keys(parameters)
 
     // If there are no parameters just return an empty string.
@@ -201,8 +201,8 @@ class ReCaptchaLoader {
    * @param callback Callback to call after the library
    * has been loaded successfully.
    */
-  private waitForScriptToLoad (callback: () => void) {
-    return () => {
+  private waitForScriptToLoad(callback: () => void) {
+    return (): void => {
       if (window.grecaptcha === undefined) {
         setTimeout(() => {
           this.waitForScriptToLoad(callback)
@@ -222,7 +222,7 @@ class ReCaptchaLoader {
    * @param parameters The parameters for the rendering process.
    * @return The id of the rendered widget.
    */
-  private doExplicitRender (grecaptcha: IReCaptchaInstance, siteKey: string, parameters: IReCaptchaExplicitRenderParameters): string {
+  private doExplicitRender(grecaptcha: IReCaptchaInstance, siteKey: string, parameters: IReCaptchaExplicitRenderParameters): string {
     // Split the given parameters into a matching interface for the grecaptcha.render function.
     const augmentedParameters: IRenderParameters = {
       sitekey: siteKey,
@@ -250,7 +250,7 @@ export interface IReCaptchaLoaderOptions {
    * option set to `true` it will use "recaptcha.net".
    * (See: https://github.com/AurityLab/recaptcha-v3/pull/2)
    */
-  useRecaptchaNet?: boolean
+  useRecaptchaNet?: boolean;
 
   /**
    * Will automatically hide the badge after loading
@@ -259,7 +259,7 @@ export interface IReCaptchaLoaderOptions {
    * the badge from Google:
    * https://developers.google.com/recaptcha/docs/faq#id-like-to-hide-the-recaptcha-v3-badge-what-is-allowedl
    */
-  autoHideBadge?: boolean
+  autoHideBadge?: boolean;
 
   /**
    * Defines additional parameters for the rendering process.
@@ -268,19 +268,19 @@ export interface IReCaptchaLoaderOptions {
    * Known possible parameters:
    * `hl` -> Will set the language of the badge.
    */
-  renderParameters?: { [key: string]: string }
+  renderParameters?: { [key: string]: string };
 
   /**
    * Defines the additional parameters for the explicit rendering process.
    */
-  explicitRenderParameters?: IReCaptchaExplicitRenderParameters
+  explicitRenderParameters?: IReCaptchaExplicitRenderParameters;
 
   /**
    * Defines a custom url for ReCaptcha JS file.
    * Useful when self hosting or proxied ReCaptcha JS file.
    * https://github.com/AurityLab/recaptcha-v3/issues/76
    */
-  customUrl?: string
+  customUrl?: string;
 }
 
 /**
@@ -288,10 +288,10 @@ export interface IReCaptchaLoaderOptions {
  * for the badge.
  */
 export interface IReCaptchaExplicitRenderParameters {
-  container?: string | Element
-  badge?: 'bottomright' | 'bottomleft' | 'inline'
-  size?: 'invisible'
-  tabindex?: number
+  container?: string | Element;
+  badge?: 'bottomright' | 'bottomleft' | 'inline';
+  size?: 'invisible';
+  tabindex?: number;
 }
 
 /**

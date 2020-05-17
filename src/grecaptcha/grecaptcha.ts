@@ -2,19 +2,19 @@ declare global {
   const grecaptcha: IReCaptchaInstance
 
   interface Window {
-    grecaptcha: IReCaptchaInstance
+    grecaptcha: IReCaptchaInstance;
   }
 }
 
 export interface IReCaptchaInstance {
-  ready(callback: () => void): void
+  ready(callback: () => void): void;
 
   /**
    * Will execute the ReCaptcha using the given SiteKey and the given options.
    * @param siteKey The ReCaptcha SiteKey.
    * @param options The options for the execution. (Only known property is "action")
    */
-  execute(siteKey: string, options: IExecuteOptions): Promise<string>
+  execute(siteKey: string, options: IExecuteOptions): Promise<string>;
 
   /**
    * Will render the ReCaptcha widget into the given container with the given parameters. This render function is
@@ -24,7 +24,7 @@ export interface IReCaptchaInstance {
    * @param container The container into which the widget shall be rendered.
    * @param parameters The rendering parameters for the widget.
    */
-  render(container: string | Element, parameters: IRenderParameters): string
+  render(container: string | Element, parameters: IRenderParameters): string;
 
   /**
    * Will render the ReCaptcha widget using the given parameters. Using the parameters, you can control the
@@ -32,7 +32,7 @@ export interface IReCaptchaInstance {
    *
    * @param parameters The rendering parameters for the widget.
    */
-  render(parameters: IRenderParameters): string
+  render(parameters: IRenderParameters): string;
 }
 
 /**
@@ -41,7 +41,7 @@ export interface IReCaptchaInstance {
  * @see https://developers.google.com/recaptcha/docs/v3#frontend_integration
  */
 export declare interface IExecuteOptions {
-  action: string
+  action: string;
 }
 
 /**
@@ -52,8 +52,8 @@ export declare interface IExecuteOptions {
  * @see https://stackoverflow.com/a/53620039
  */
 export declare interface IRenderParameters {
-  sitekey: string
-  badge?: 'bottomright' | 'bottomleft' | 'inline'
-  size?: 'invisible'
-  tabindex?: number
+  sitekey: string;
+  badge?: 'bottomright' | 'bottomleft' | 'inline';
+  size?: 'invisible';
+  tabindex?: number;
 }
