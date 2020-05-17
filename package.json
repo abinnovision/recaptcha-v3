@@ -30,7 +30,6 @@
     "demo": "webpack-dev-server --config demo/webpack.config.js --progress --public --host 0.0.0.0 --port 30399"
   },
   "devDependencies": {
-    "@auritylab/tslint-config-base": "^1.0.1",
     "@cypress/webpack-preprocessor": "^4.1.5",
     "@typescript-eslint/eslint-plugin": "2",
     "cypress": "^4.5.0",
