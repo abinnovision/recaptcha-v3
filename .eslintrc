@@ -1,13 +1,13 @@
 {
-  "extends": "standard-with-typescript",
-  "parserOptions": {
-    "project": [
-      "./tsconfig.json",
-      "./demo/tsconfig.json",
-      "./cypress/tsconfig.json"
-    ]
-  },
+  "parser": "@typescript-eslint/parser",
+  "plugins": [
+    "@typescript-eslint"
+  ],
+  "extends": [
+    "plugin:@typescript-eslint/recommended"
+  ],
   "rules": {
-    "@typescript-eslint/strict-boolean-expressions": "off"
+    // To avoid renaming of exposed interfaces.
+    "@typescript-eslint/interface-name-prefix": "off"
   }
 }
