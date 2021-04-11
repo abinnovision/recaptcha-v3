@@ -34,6 +34,14 @@ describe('ReCaptchaLoader', () => {
       expect(response).not.null
       expect(response).to.be.a('string')
     })
+
+    it('should execution null action correctly', async () => {
+      const response = await recaptchaInst.execute(null)
+
+      expect(response).not.null
+      expect(response).to.be.a('string')
+      console.log(response)
+    })
   })
 
   describe('Simultaneous loading', () => {

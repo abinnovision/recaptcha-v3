@@ -41,7 +41,7 @@ export interface IReCaptchaInstance {
  * @see https://developers.google.com/recaptcha/docs/v3#frontend_integration
  */
 export declare interface IExecuteOptions {
-  action: string;
+  action?: string;
 }
 
 /**
