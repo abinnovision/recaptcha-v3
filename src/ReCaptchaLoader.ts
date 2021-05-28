@@ -71,7 +71,13 @@ class ReCaptchaLoader {
     const loader = new ReCaptchaLoader()
     return new Promise((resolve, reject) => {
       // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
-      loader.loadScript(siteKey, options.useRecaptchaNet || false, options.renderParameters ? options.renderParameters : {}, options.customUrl).then(() => {
+      loader.loadScript(
+          siteKey,
+          options.useRecaptchaNet || false,
+          options.renderParameters ? options.renderParameters : {},
+          options.customUrl,
+          options.scriptElementAttributes !== undefined ? options.scriptElementAttributes : {'recaptcha-v3-script': '', 'async': '', 'defer': ''}
+      ).then(() => {
         ReCaptchaLoader.setLoadingState(ELoadingState.LOADED)
 
         // Render the ReCaptcha widget.
@@ -129,14 +135,21 @@ class ReCaptchaLoader {
    * @param siteKey The site key to load the library with.
    * @param useRecaptchaNet If the loader should use "recaptcha.net" instead of "google.com"
    * @param renderParameters Additional parameters for reCAPTCHA.
-   * @param customUrl If the loader custom URL insted of the official recaptcha URLs
+   * @param customUrl If the loader custom URL instead of the official recaptcha URLs
+   * @param scriptElementAttributes Additional attributes for the reCAPTCHA script tag
    */
   // eslint-disable-next-line @typescript-eslint/promise-function-async
   private loadScript(siteKey: string, useRecaptchaNet = false,
-                     renderParameters: { [key: string]: string } = {}, customUrl = ''): Promise<HTMLScriptElement> {
+                     renderParameters: { [key: string]: string } = {},
+                     customUrl = '',
+                     scriptElementAttributes: { [key: string]: string } = {}): Promise<HTMLScriptElement> {
     // Create script element
     const scriptElement: HTMLScriptElement = document.createElement('script')
-    scriptElement.setAttribute('recaptcha-v3-script', '')
+
+    // Set the additional attributes
+    for (const [attrName, attrValue] of Object.entries(scriptElementAttributes)) {
+      scriptElement.setAttribute(attrName, attrValue)
+    }
 
     let scriptBase = 'https://www.google.com/recaptcha/api.js'
     if (useRecaptchaNet) {
@@ -281,6 +294,11 @@ export interface IReCaptchaLoaderOptions {
    * https://github.com/AurityLab/recaptcha-v3/issues/76
    */
   customUrl?: string;
+
+  /**
+   * Defines additional attributes on the recaptcha <script> element.
+   */
+  scriptElementAttributes?: { [key: string]: string };
 }
 
 /**
