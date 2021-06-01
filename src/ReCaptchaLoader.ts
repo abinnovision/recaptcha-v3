@@ -76,7 +76,7 @@ class ReCaptchaLoader {
           options.useRecaptchaNet || false,
           options.renderParameters ? options.renderParameters : {},
           options.customUrl,
-          options.scriptElementAttributes !== undefined ? options.scriptElementAttributes : {'recaptcha-v3-script': '', 'async': '', 'defer': ''}
+          options.scriptElementAttributes !== undefined ? options.scriptElementAttributes : {'recaptcha-v3-script': '', 'defer': ''}
       ).then(() => {
         ReCaptchaLoader.setLoadingState(ELoadingState.LOADED)
 
