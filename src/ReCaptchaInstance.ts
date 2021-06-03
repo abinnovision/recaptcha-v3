@@ -48,7 +48,7 @@ export class ReCaptchaInstance {
     }
 
     this.styleContainer = document.createElement('style')
-    this.styleContainer.innerHTML = '.grecaptcha-badge{display:none !important;}'
+    this.styleContainer.innerHTML = '.grecaptcha-badge{visibility:hidden !important;}'
     document.head.appendChild(this.styleContainer)
   }
 
