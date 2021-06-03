@@ -147,8 +147,8 @@ class ReCaptchaLoader {
     const scriptElement: HTMLScriptElement = document.createElement('script')
 
     // Set the additional attributes
-    for (const [attrName, attrValue] of Object.entries(scriptElementAttributes)) {
-      scriptElement.setAttribute(attrName, attrValue)
+    for (const attrName of Object.keys(scriptElementAttributes)) {
+      scriptElement.setAttribute(attrName, scriptElementAttributes[attrName])
     }
 
     let scriptBase = 'https://www.google.com/recaptcha/api.js'
