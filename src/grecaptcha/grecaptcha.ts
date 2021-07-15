@@ -33,6 +33,8 @@ export interface IReCaptchaInstance {
    * @param parameters The rendering parameters for the widget.
    */
   render(parameters: IRenderParameters): string;
+
+  enterprise: Omit<IReCaptchaInstance,'enterprise'>
 }
 
 /**
