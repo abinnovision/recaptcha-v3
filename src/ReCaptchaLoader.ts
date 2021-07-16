@@ -71,11 +71,11 @@ class ReCaptchaLoader {
     const loader = new ReCaptchaLoader()
     return new Promise((resolve, reject) => {
       // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
-      loader.loadScript(siteKey, options.useRecaptchaNet || false, options.renderParameters ? options.renderParameters : {}, options.customUrl).then(() => {
+      loader.loadScript(siteKey, options.useRecaptchaNet || false, options.useEnterprise || false, options.renderParameters ? options.renderParameters : {}, options.customUrl).then(() => {
         ReCaptchaLoader.setLoadingState(ELoadingState.LOADED)
 
         // Render the ReCaptcha widget.
-        const widgetID = loader.doExplicitRender(grecaptcha, siteKey, options.explicitRenderParameters ? options.explicitRenderParameters : {})
+        const widgetID = loader.doExplicitRender(grecaptcha, siteKey, options.explicitRenderParameters ? options.explicitRenderParameters : {}, options.useEnterprise || false)
 
         const instance = new ReCaptchaInstance(siteKey, widgetID, grecaptcha)
         ReCaptchaLoader.successfulLoadingConsumers.forEach((v) => v(instance))
@@ -128,20 +128,31 @@ class ReCaptchaLoader {
    *
    * @param siteKey The site key to load the library with.
    * @param useRecaptchaNet If the loader should use "recaptcha.net" instead of "google.com"
+   * @param useEnterprise If provided the loader should use the enterprise version of the reCAPTCHA api.
    * @param renderParameters Additional parameters for reCAPTCHA.
    * @param customUrl If the loader custom URL insted of the official recaptcha URLs
    */
   // eslint-disable-next-line @typescript-eslint/promise-function-async
-  private loadScript(siteKey: string, useRecaptchaNet = false,
+  private loadScript(siteKey: string, useRecaptchaNet = false, useEnterprise = false,
                      renderParameters: { [key: string]: string } = {}, customUrl = ''): Promise<HTMLScriptElement> {
     // Create script element
     const scriptElement: HTMLScriptElement = document.createElement('script')
     scriptElement.setAttribute('recaptcha-v3-script', '')
 
     let scriptBase = 'https://www.google.com/recaptcha/api.js'
+
     if (useRecaptchaNet) {
-      scriptBase = 'https://recaptcha.net/recaptcha/api.js'
+      if (useEnterprise) {
+        scriptBase = 'https://recaptcha.net/recaptcha/enterprise.js'
+      } else {
+        scriptBase = 'https://recaptcha.net/recaptcha/api.js'
+      }
     }
+    
+    if (useEnterprise) {
+      scriptBase = 'https://www.google.com/recaptcha/enterprise.js'
+    }
+
     if (customUrl) {
       scriptBase = customUrl
     }
@@ -159,7 +170,7 @@ class ReCaptchaLoader {
     return new Promise<HTMLScriptElement>((resolve, reject) => {
       scriptElement.addEventListener('load', this.waitForScriptToLoad(() => {
         resolve(scriptElement)
-      }), false)
+      }, useEnterprise), false)
       scriptElement.onerror = (error): void => {
         ReCaptchaLoader.setLoadingState(ELoadingState.NOT_LOADED)
         reject(error)
@@ -201,16 +212,22 @@ class ReCaptchaLoader {
    * @param callback Callback to call after the library
    * has been loaded successfully.
    */
-  private waitForScriptToLoad(callback: () => void) {
+  private waitForScriptToLoad(callback: () => void, useEnterprise: boolean) {
     return (): void => {
       if (window.grecaptcha === undefined) {
         setTimeout(() => {
-          this.waitForScriptToLoad(callback)
+          this.waitForScriptToLoad(callback, useEnterprise)
         }, ReCaptchaLoader.SCRIPT_LOAD_DELAY)
       } else {
-        window.grecaptcha.ready(() => {
-          callback()
-        })
+        if (useEnterprise) {
+          window.grecaptcha.enterprise.ready(() => {
+            callback()
+          })
+        } else {
+          window.grecaptcha.ready(() => {
+            callback()
+          })
+        }
       }
     }
   }
@@ -222,7 +239,7 @@ class ReCaptchaLoader {
    * @param parameters The parameters for the rendering process.
    * @return The id of the rendered widget.
    */
-  private doExplicitRender(grecaptcha: IReCaptchaInstance, siteKey: string, parameters: IReCaptchaExplicitRenderParameters): string {
+  private doExplicitRender(grecaptcha: IReCaptchaInstance, siteKey: string, parameters: IReCaptchaExplicitRenderParameters, isEnterprise: boolean): string {
     // Split the given parameters into a matching interface for the grecaptcha.render function.
     const augmentedParameters: IRenderParameters = {
       sitekey: siteKey,
@@ -233,9 +250,17 @@ class ReCaptchaLoader {
 
     // Differ if an explicit container element is given.
     if (parameters.container) {
-      return grecaptcha.render(parameters.container, augmentedParameters)
+      if (isEnterprise) {
+        return grecaptcha.enterprise.render(parameters.container, augmentedParameters)
+      } else {
+        return grecaptcha.render(parameters.container, augmentedParameters)
+      }
     } else {
-      return grecaptcha.render(augmentedParameters)
+      if (isEnterprise) {
+        return grecaptcha.enterprise.render(augmentedParameters)
+      } else {
+        return grecaptcha.render(augmentedParameters)
+      }
     }
   }
 }
@@ -251,6 +276,14 @@ export interface IReCaptchaLoaderOptions {
    * (See: https://github.com/AurityLab/recaptcha-v3/pull/2)
    */
   useRecaptchaNet?: boolean;
+
+  /**
+   * By default the loader uses "https://www.google.com/recaptcha/api.js" api src, with this
+   * option set to `true` it will use "https://www.google.com/recaptcha/enterprise.js" 
+   * api src instead which is the enterprise version of recaptcha API. The loader will also handle differences 
+   * in response.
+   */
+  useEnterprise?: boolean;
 
   /**
    * Will automatically hide the badge after loading

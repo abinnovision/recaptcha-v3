@@ -24,7 +24,7 @@ export class ReCaptchaInstance {
    * @param action The action to execute with.
    */
   public async execute(action?: string): Promise<string> {
-    return this.recaptcha.execute(this.recaptchaID, {action})
+    return this.recaptcha.enterprise ? this.recaptcha.enterprise.execute(this.recaptchaID, {action}) :  this.recaptcha.execute(this.recaptchaID, {action})
   }
 
   /**
