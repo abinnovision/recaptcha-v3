@@ -131,6 +131,16 @@ describe('ReCaptchaLoader', () => {
 
       expect(result).not.null
     })
+
+    it('should load with `dark` theme', async () => {
+      const result = await load(testingSiteKey, {
+        explicitRenderParameters: {
+          theme: "dark"
+        }
+      })
+
+      expect(result).not.null
+    })
   })
 
   describe('Render parameters', () => {

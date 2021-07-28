@@ -148,7 +148,7 @@ class ReCaptchaLoader {
         scriptBase = 'https://recaptcha.net/recaptcha/api.js'
       }
     }
-    
+
     if (useEnterprise) {
       scriptBase = 'https://www.google.com/recaptcha/enterprise.js'
     }
@@ -244,6 +244,7 @@ class ReCaptchaLoader {
     const augmentedParameters: IRenderParameters = {
       sitekey: siteKey,
       badge: parameters.badge,
+      theme: parameters.theme,
       size: parameters.size,
       tabindex: parameters.tabindex
     }
@@ -279,8 +280,8 @@ export interface IReCaptchaLoaderOptions {
 
   /**
    * By default the loader uses "https://www.google.com/recaptcha/api.js" api src, with this
-   * option set to `true` it will use "https://www.google.com/recaptcha/enterprise.js" 
-   * api src instead which is the enterprise version of recaptcha API. The loader will also handle differences 
+   * option set to `true` it will use "https://www.google.com/recaptcha/enterprise.js"
+   * api src instead which is the enterprise version of recaptcha API. The loader will also handle differences
    * in response.
    */
   useEnterprise?: boolean;
@@ -323,6 +324,7 @@ export interface IReCaptchaLoaderOptions {
 export interface IReCaptchaExplicitRenderParameters {
   container?: string | Element;
   badge?: 'bottomright' | 'bottomleft' | 'inline';
+  theme?: 'dark' | 'light';
   size?: 'invisible';
   tabindex?: number;
 }
