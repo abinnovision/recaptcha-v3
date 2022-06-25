@@ -1,24 +1,52 @@
 name: Test
 
 on:
-- push
-- pull_request
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
 
 jobs:
-  test:
+  build:
+    name: Build
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
-    - name: Use Node.js 12.x
-      uses: actions/setup-node@v1
-      with:
-        node-version: 12
-    - name: Install dependencies
-      run: |
-        yarn install
-    - name: Lint
-      run: |
-        yarn lint
-    - name: Crypress tests
-      run: |
-        yarn cypress:run
+      - uses: actions/checkout@v3
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 14
+
+      - uses: c-hive/gha-yarn-cache@v2
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Lint (ESLint)
+        run: yarn eslint:check
+
+      - name: Style (Prettier)
+        run: yarn prettier:check
+
+      - name: Build
+        run: yarn build
+  e2e:
+    name: E2E Tests (Cypress)
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 14
+
+      - uses: c-hive/gha-yarn-cache@v2
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Cypress (Chrome)
+        uses: cypress-io/github-action@v4
+        with:
+          browser: chrome
