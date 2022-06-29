@@ -1425,10 +1425,10 @@ escape-string-regexp@^4.0.0:
   resolved "https://registry.yarnpkg.com/escape-string-regexp/-/escape-string-regexp-4.0.0.tgz#14ba83a5d373e3d311e5afca29cf5bfad965bf34"
   integrity sha512-TtpcNJ3XAzx3Gq8sWRzJaVajRs0uVxA2YAkdb1jm2YkPz4G6egUFAyA3n5vtEIZefPk5Wa4UXbKuS5fKkJWdgA==
 
-eslint-config-alloy@^4.5.1:
-  version "4.5.1"
-  resolved "https://registry.yarnpkg.com/eslint-config-alloy/-/eslint-config-alloy-4.5.1.tgz#b93688102b76deb863824351fa861941f74dd826"
-  integrity sha512-rdHaoAyOf4scccQX3bxqmUa85+cvyhPvijqobsZT+Cdt0HGAbhGby3lghmotGOYHACRTtn7gs+oM5pnnmPkXyw==
+eslint-config-alloy@^4.6.0:
+  version "4.6.0"
+  resolved "https://registry.yarnpkg.com/eslint-config-alloy/-/eslint-config-alloy-4.6.0.tgz#b636f79af6520e486952d84ae7a8968632440b05"
+  integrity sha512-3hkN6ofR67CvIqTIBPONj85/tnidYVgauQwcQ/XOKFmzfsbQyMTI+GyK4f/Cl6jhacY8RHTf1eS6emPLuJ19eQ==
 
 eslint-scope@5.1.1, eslint-scope@^5.1.1:
   version "5.1.1"
