@@ -1,23 +1,15 @@
 {
-  "compilerOptions": {
-    "outDir": "./dist/",
-    "noImplicitAny": true,
-    "moduleResolution": "node",
-    "module": "commonjs",
-    "target": "es5",
-    "declaration": true,
-    "removeComments": true,
-    "lib": [
-      "es6",
-      "dom"
-    ]
-  },
+	"compilerOptions": {
+		"outDir": "./dist/",
+		"noImplicitAny": true,
+		"moduleResolution": "node",
+		"module": "commonjs",
+		"target": "es5",
+		"declaration": true,
+		"removeComments": true,
+		"lib": ["es6", "dom"]
+	},
 
-  "include": [
-    "src/**/*"
-  ],
-  "exclude": [
-    "node_modules",
-    "demo/*"
-  ]
+	"include": ["src/**/*"],
+	"exclude": ["node_modules", "demo/*"]
 }

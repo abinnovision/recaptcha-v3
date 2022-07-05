@@ -1,19 +1,29 @@
 version: 2
 updates:
-- package-ecosystem: npm
-  directory: "/"
-  schedule:
-    interval: daily
-    time: "04:00"
-  open-pull-requests-limit: 10
-  reviewers:
-  - WipeAir
-  ignore:
-  - dependency-name: ts-loader
-    versions:
-    - 9.0.0
-    - 9.0.2
-    - 9.1.0
-  - dependency-name: cypress
-    versions:
-    - 7.0.0
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: daily
+      time: "13:00"
+      timezone: Europe/Berlin
+    commit-message:
+      prefix: "build(dep)"
+      prefix-development: "build(deps/dev)"
+    reviewers:
+      - "AurityLab/owners"
+    open-pull-requests-limit: 10
+    labels:
+      - dependencies
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: daily
+      time: "13:00"
+      timezone: Europe/Berlin
+    commit-message:
+      prefix: "build(deps/gha)"
+    reviewers:
+      - "AurityLab/owners"
+    open-pull-requests-limit: 5
+    labels:
+      - dependencies

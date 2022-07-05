@@ -1,0 +1,52 @@
+# Contains different utility checks for Pull Requests.
+name: PR Utils
+
+# Only apply to PRs which target 'master' branch.
+on:
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  lint-commits:
+    name: Lint commits
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Run linter
+        uses: wagoid/commitlint-github-action@v4
+        with:
+          configFile: .commitlintrc.yaml
+          helpUrl: https://github.com/conventional-changelog/commitlint/tree/master/%40commitlint/config-conventional
+  dependabot:
+    name: "Dependabot automations"
+    runs-on: ubuntu-latest
+    if: ${{ github.actor == 'dependabot[bot]' }}
+    permissions:
+      pull-requests: write
+      issues: write
+      repository-projects: write
+      contents: write
+    steps:
+      - name: Metadata
+        id: metadata
+        uses: dependabot/fetch-metadata@v1.3.3
+        with:
+          github-token: "${{ secrets.GITHUB_TOKEN }}"
+      - name: Enable auto-rebase
+        id: enable-auto-rebase
+        run: gh pr merge --auto --rebase "$PR_URL"
+        env:
+          PR_URL: ${{github.event.pull_request.html_url}}
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+      - name: "Approve (minor & patch)"
+        id: approve
+        if: steps.metadata.outputs.update-type == 'version-update:semver-minor' || steps.metadata.outputs.update-type == 'version-update:semver-patch'
+        run: gh pr review --approve "$PR_URL"
+        env:
+          PR_URL: ${{github.event.pull_request.html_url}}
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
