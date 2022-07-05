@@ -9,8 +9,6 @@ updates:
     commit-message:
       prefix: "build(dep)"
       prefix-development: "build(deps/dev)"
-    reviewers:
-      - "AurityLab/owners"
     open-pull-requests-limit: 10
     labels:
       - dependencies
@@ -22,8 +20,6 @@ updates:
       timezone: Europe/Berlin
     commit-message:
       prefix: "build(deps/gha)"
-    reviewers:
-      - "AurityLab/owners"
     open-pull-requests-limit: 5
     labels:
       - dependencies
