@@ -1,4 +1,4 @@
-name: Test
+name: Build
 
 on:
   push:
@@ -12,40 +12,35 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
           node-version: 14
-
       - uses: c-hive/gha-yarn-cache@v2
       - name: Install dependencies
         run: yarn install
-
       - name: Lint (ESLint)
         run: yarn eslint:check
-
       - name: Style (Prettier)
         run: yarn prettier:check
-
       - name: Build
         run: yarn build
+      - name: CodeQL Analysis
+        uses: github/codeql-action/analyze@v1
+
   e2e:
     name: E2E Tests (Cypress)
     runs-on: ubuntu-latest
     needs: build
     steps:
       - uses: actions/checkout@v3
-
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
           node-version: 14
-
       - uses: c-hive/gha-yarn-cache@v2
       - name: Install dependencies
         run: yarn install
-
       - name: Cypress (Chrome)
         uses: cypress-io/github-action@v4
         with:
