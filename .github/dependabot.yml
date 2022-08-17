@@ -3,7 +3,8 @@ updates:
   - package-ecosystem: npm
     directory: /
     schedule:
-      interval: daily
+      interval: weekly
+      day: saturday
       time: "13:00"
       timezone: Europe/Berlin
     commit-message:
@@ -15,7 +16,8 @@ updates:
   - package-ecosystem: github-actions
     directory: /
     schedule:
-      interval: daily
+      interval: weekly
+      day: saturday
       time: "13:00"
       timezone: Europe/Berlin
     commit-message:
