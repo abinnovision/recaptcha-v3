@@ -60,7 +60,7 @@
 		}
 	},
 	"dependencies": {
-		"@commitlint/cli": "^17.0.3",
+		"@commitlint/cli": "^17.1.1",
 		"@commitlint/config-angular": "^17.1.0"
 	}
 }
