@@ -1810,10 +1810,10 @@ escape-string-regexp@^4.0.0:
   resolved "https://registry.yarnpkg.com/escape-string-regexp/-/escape-string-regexp-4.0.0.tgz#14ba83a5d373e3d311e5afca29cf5bfad965bf34"
   integrity sha512-TtpcNJ3XAzx3Gq8sWRzJaVajRs0uVxA2YAkdb1jm2YkPz4G6egUFAyA3n5vtEIZefPk5Wa4UXbKuS5fKkJWdgA==
 
-eslint-config-alloy@^4.6.2:
-  version "4.6.2"
-  resolved "https://registry.yarnpkg.com/eslint-config-alloy/-/eslint-config-alloy-4.6.2.tgz#077a43bc5973d08b06dbc0771606b7c1f10d1f2a"
-  integrity sha512-mntO/1jazNIJJCb3mwtaH4D9uLnEIzI0EM2aYnllYVBmET0t490yBSLdPz+5cWtJsHU2DkW7aPI/kFtal9Vopg==
+eslint-config-alloy@^4.7.0:
+  version "4.7.0"
+  resolved "https://registry.yarnpkg.com/eslint-config-alloy/-/eslint-config-alloy-4.7.0.tgz#2b343b57c6be87ee5e7b604fb80ce2e91a18445c"
+  integrity sha512-e5wUP9SB/k2hBzzl2InpvG1toYWB4lRrJbAAdtDv8CUWsyxrznQZod4CrS1p3O+hf+PQhSqR2rbXLF4TvNWisw==
 
 eslint-scope@5.1.1, eslint-scope@^5.1.1:
   version "5.1.1"
