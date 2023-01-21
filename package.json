@@ -38,7 +38,7 @@
 		"@typescript-eslint/eslint-plugin": "^5.48.2",
 		"@typescript-eslint/parser": "^5.48.2",
 		"chai": "^4.3.7",
-		"cypress": "^10.11.0",
+		"cypress": "^12.3.0",
 		"eslint": "^8.32.0",
 		"eslint-config-alloy": "^4.9.0",
 		"html-webpack-plugin": "^5.5.0",
