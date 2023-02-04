@@ -44,6 +44,6 @@ jobs:
       - name: Install dependencies
         run: yarn install
       - name: Cypress (Chrome)
-        uses: cypress-io/github-action@v4
+        uses: cypress-io/github-action@v5
         with:
           browser: chrome
