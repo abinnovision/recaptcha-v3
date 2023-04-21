@@ -10,15 +10,3 @@ load("6LfC6HgUAAAAAEtG92bYRzwYkczElxq7WkCoG4Ob")
 			.catch(console.error);
 	})
 	.catch(console.error);
-
-/* --- Async/Await version --- */
-/*
-async function asyncAwaitReCaptcha() {
-  const recaptcha = await load('6LfC6HgUAAAAAEtG92bYRzwYkczElxq7WkCoG4Ob')
-  const token = await recaptcha.execute('action')
-
-  console.log(token)
-}
-
-asyncAwaitReCaptcha()
-*/

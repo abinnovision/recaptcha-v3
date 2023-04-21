@@ -27,7 +27,7 @@
 		"check": "concurrently 'yarn eslint:check' 'yarn prettier:check' 'yarn sort:check'",
 		"cypress:open": "cypress open",
 		"cypress:run": "cypress run",
-		"demo": "webpack-dev-server --config demo/webpack.config.js --progress --port 30399",
+		"demo": "parcel demo/src/index.html",
 		"eslint:check": "eslint '{src,demo,cypress}/**/*.{js,ts}'",
 		"eslint:fix": "eslint --fix '{src,demo,cypress}/**/*.{js,ts}'",
 		"fix": "concurrently 'yarn eslint:fix' 'yarn prettier:fix' 'yarn sort:fix'",
@@ -82,17 +82,13 @@
 		"eslint": "^8.38.0",
 		"eslint-config-prettier": "^8.8.0",
 		"eslint-plugin-import": "^2.27.5",
-		"html-webpack-plugin": "^5.5.0",
 		"husky": "^8.0.0",
 		"lint-staged": "^13.2.1",
+		"parcel": "^2.8.3",
 		"pinst": "^3.0.0",
 		"prettier": "^2.8.7",
 		"sort-package-json": "^2.4.1",
-		"ts-loader": "^9.4.2",
-		"typescript": "^5.0.4",
-		"webpack": "^5.79.0",
-		"webpack-cli": "^4.10.0",
-		"webpack-dev-server": "^4.13.2"
+		"typescript": "^5.0.4"
 	},
 	"packageManager": "yarn@3.5.0"
 }
