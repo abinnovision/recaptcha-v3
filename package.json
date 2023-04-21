@@ -28,14 +28,14 @@
 		"cypress:open": "cypress open",
 		"cypress:run": "cypress run",
 		"demo": "parcel demo/src/index.html",
-		"eslint:check": "eslint '{src,demo,cypress}/**/*.{js,ts}'",
-		"eslint:fix": "eslint --fix '{src,demo,cypress}/**/*.{js,ts}'",
+		"eslint:check": "eslint '{src/**,demo/**,cypress/**,.}/*.{js,ts}'",
+		"eslint:fix": "eslint --fix '{src/**,demo/**,cypress/**,.}/*.{js,ts}'",
 		"fix": "concurrently 'yarn eslint:fix' 'yarn prettier:fix' 'yarn sort:fix'",
 		"postinstall": "husky install",
 		"prepack": "pinst --disable",
 		"postpack": "pinst --enable",
-		"prettier:check": "prettier --check '{src,demo,cypress}/**/*.{ts,js}' '**/*.{json,yaml,yml}'",
-		"prettier:fix": "prettier --write '{src,demo,cypress}/**/*.{ts,js}' '**/*.{json,yaml,yml}'",
+		"prettier:check": "prettier --check '{src/**,demo/**,cypress/**,.}/*.{ts,js,html}' '**/*.{json,json5,yaml,yml}'",
+		"prettier:fix": "prettier --write '{src/**,demo/**,cypress/**,.}/*.{ts,js,html}' '**/*.{json,json5,yaml,yml}'",
 		"sort:check": "sort-package-json --check",
 		"sort:fix": "sort-package-json"
 	},
@@ -45,11 +45,14 @@
 		]
 	},
 	"lint-staged": {
-		"{src,demo,cypress}/**/*.{js,ts}": [
+		"{src/**,demo/**,cypress/**,.}/*.{js,ts}": [
 			"eslint --fix",
 			"prettier --write"
 		],
-		"**/*.{json,yaml,yml}": [
+		"{src/**,demo/**,cypress/**,.}/*.{ts,js,html}": [
+			"prettier --write"
+		],
+		"**/*.{json,json5,yaml,yml}": [
 			"prettier --write"
 		],
 		"package.json": [
