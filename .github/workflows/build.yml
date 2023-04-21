@@ -12,6 +12,9 @@ jobs:
   build:
     name: Check & Build
     runs-on: ubuntu-latest
+    env:
+      # Avoid installing Cypress binary in this job, because it's not being used.
+      CYPRESS_INSTALL_BINARY: "0"
     steps:
       - name: Checkout
         uses: actions/checkout@v3
