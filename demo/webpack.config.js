@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-require-imports */
-const path = require("path");
 const WebpackHtmlPlugin = require("html-webpack-plugin");
+const path = require("path");
 
 module.exports = {
 	entry: path.resolve(__dirname, "./src/index.ts"),
