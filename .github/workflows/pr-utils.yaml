@@ -13,15 +13,8 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event_name == 'pull_request'
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
       - name: Run linter
-        uses: wagoid/commitlint-github-action@v5
-        with:
-          configFile: .commitlintrc.yaml
-          helpUrl: https://github.com/conventional-changelog/commitlint/tree/master/%40commitlint/config-conventional
+        uses: abinnovision/actions/actions/run-commitlint@master
   dependabot:
     name: "Dependabot automations"
     runs-on: ubuntu-latest
