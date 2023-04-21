@@ -2,47 +2,47 @@ name: Build
 
 on:
   push:
-    branches: [master]
+    branches:
+      - master
   pull_request:
-    branches: [master]
+    branches:
+      - master
 
 jobs:
   build:
-    name: Build
+    name: Check & Build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 14
-      - uses: github/codeql-action/init@v2
-        with:
-          languages: javascript
-      - uses: c-hive/gha-yarn-cache@v2
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup Node
+        uses: abinnovision/actions/actions/setup-node@master
+
       - name: Install dependencies
-        run: yarn install
-      - name: Lint (ESLint)
-        run: yarn eslint:check
-      - name: Style (Prettier)
-        run: yarn prettier:check
+        run: yarn install --immutable
+
+      # Lint & Format
+      - name: Check
+        run: yarn check
+
+      # Build
       - name: Build
         run: yarn build
-      - name: CodeQL Analysis
-        uses: github/codeql-action/analyze@v1
 
-  e2e:
+  test-e2e:
     name: E2E Tests (Cypress)
     runs-on: ubuntu-latest
-    needs: build
+    needs:
+      - build
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v3
       - name: Setup Node
-        uses: actions/setup-node@v3
-        with:
-          node-version: 14
-      - uses: c-hive/gha-yarn-cache@v2
+        uses: abinnovision/actions/actions/setup-node@master
+
       - name: Install dependencies
-        run: yarn install
+        run: yarn install --immutable
+
       - name: Cypress (Chrome)
         uses: cypress-io/github-action@v4
         with:
