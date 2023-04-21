@@ -14,7 +14,7 @@
 		"url": "https://github.com/AurityLab/recaptcha-v3"
 	},
 	"license": "Apache-2.0",
-	"author": "AurityLab <info@auritylab.com>",
+	"author": "AB INNOVISION UG <info@abinnovision.com>",
 	"main": "dist/ReCaptcha.js",
 	"types": "dist/ReCaptcha.d.ts",
 	"files": [
