@@ -12,6 +12,7 @@ on:
 
 jobs:
   codeql:
+    name: CodeQL
     runs-on: ubuntu-latest
     env:
       # Avoid installing Cypress binary in this job, because it's not being used.
