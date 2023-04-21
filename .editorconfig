@@ -2,5 +2,6 @@
 end_of_line = lf
 charset = utf-8
 indent_style = tab
+max_line_length = 80
 indent_size = 1
 tab_width = 2
