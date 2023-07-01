@@ -87,7 +87,7 @@
 		"eslint-config-prettier": "^8.8.0",
 		"eslint-plugin-import": "^2.27.5",
 		"husky": "^8.0.0",
-		"lint-staged": "^13.2.2",
+		"lint-staged": "^13.2.3",
 		"parcel": "^2.9.2",
 		"pinst": "^3.0.0",
 		"prettier": "^2.8.8",
