@@ -90,7 +90,7 @@
 		"lint-staged": "^13.2.3",
 		"parcel": "^2.9.3",
 		"pinst": "^3.0.0",
-		"prettier": "^2.8.8",
+		"prettier": "^3.0.3",
 		"sort-package-json": "^2.5.1",
 		"typescript": "^5.2.2"
 	},
