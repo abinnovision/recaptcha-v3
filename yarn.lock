@@ -1517,10 +1517,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^20.6.2":
-  version: 20.6.2
-  resolution: "@types/node@npm:20.6.2"
-  checksum: 96fe5303872640a173f3fd43e289a451776ed5b8f0090094447c6790b43f23fb607eea8268af0829cef4d132e5afa0bfa4cd871aa7412e9042a414a698e9e971
+"@types/node@npm:^20.8.0":
+  version: 20.8.0
+  resolution: "@types/node@npm:20.8.0"
+  checksum: ebad6342d54238a24bf980d7750117a5d67749c9b72cbb7a974a1e932c39034aa3a810d669e007e8a5071782a253aa069a187b614407a382403c9826e837c849
   languageName: node
   linkType: hard
 
@@ -6205,7 +6205,7 @@ __metadata:
     "@abinnovision/eslint-config-typescript": ^1.1.0
     "@abinnovision/prettier-config": ^1.1.0
     "@commitlint/cli": ^17.7.1
-    "@types/node": ^20.6.2
+    "@types/node": ^20.8.0
     "@typescript-eslint/eslint-plugin": ^5.61.0
     "@typescript-eslint/parser": ^5.61.0
     chai: ^4.3.8
