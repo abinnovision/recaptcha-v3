@@ -80,7 +80,7 @@
 		"@types/node": "^20.8.3",
 		"@typescript-eslint/eslint-plugin": "^5.61.0",
 		"@typescript-eslint/parser": "^5.61.0",
-		"chai": "^4.3.8",
+		"chai": "^4.3.10",
 		"concurrently": "^8.2.1",
 		"cypress": "^12.14.0",
 		"eslint": "^8.51.0",
