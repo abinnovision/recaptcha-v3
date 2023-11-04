@@ -76,7 +76,7 @@
 		"@abinnovision/eslint-config-base": "^1.1.0",
 		"@abinnovision/eslint-config-typescript": "^1.1.0",
 		"@abinnovision/prettier-config": "^1.1.0",
-		"@commitlint/cli": "^17.7.2",
+		"@commitlint/cli": "^18.2.0",
 		"@types/node": "^20.8.10",
 		"@typescript-eslint/eslint-plugin": "^5.61.0",
 		"@typescript-eslint/parser": "^5.61.0",
