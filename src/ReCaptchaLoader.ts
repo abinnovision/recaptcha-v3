@@ -1,5 +1,6 @@
-import { IReCaptchaInstance, IRenderParameters } from "./grecaptcha/grecaptcha";
 import { ReCaptchaInstance } from "./ReCaptchaInstance";
+
+import type { IReCaptchaInstance, IRenderParameters } from "./grecaptcha/grecaptcha";
 
 enum ELoadingState {
 	NOT_LOADED,

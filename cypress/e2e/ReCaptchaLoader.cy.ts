@@ -1,8 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unused-expressions */
 import { expect } from "chai";
 
-import { ReCaptchaInstance } from "../../src/ReCaptchaInstance";
 import { getInstance, load } from "../../src/ReCaptchaLoader";
+
+import type { ReCaptchaInstance } from "../../src/ReCaptchaInstance";
 
 const testingSiteKey = "6LfC6HgUAAAAAEtG92bYRzwYkczElxq7WkCoG4Ob";
 
