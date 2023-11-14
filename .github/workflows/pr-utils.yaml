@@ -14,7 +14,7 @@ jobs:
     if: github.event_name == 'pull_request'
     steps:
       - name: Run linter
-        uses: abinnovision/actions/actions/run-commitlint@master
+        uses: abinnovision/actions@run-commitlint-v1
   dependabot:
     name: "Dependabot automations"
     runs-on: ubuntu-latest
