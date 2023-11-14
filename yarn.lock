@@ -47,12 +47,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@abinnovision/prettier-config@npm:^1.1.0":
-  version: 1.1.0
-  resolution: "@abinnovision/prettier-config@npm:1.1.0"
+"@abinnovision/prettier-config@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "@abinnovision/prettier-config@npm:2.0.0"
+  peerDependencies:
+    prettier: ^2.4.0 || ^3.0.0
   bin:
-    sync-editorconfig: ./dist/sync-editorconfig.js
-  checksum: f3999a690503dd28f014640d2eba17e11784c7ef6fb1844ac37bf71eb7b03147419c2ebd3060fc7ff5526a2e731ead8dde9c9a2371488d77139f79b801c10d7b
+    sync-editorconfig: ./dist/bin/sync-editorconfig.js
+  checksum: 81072069ce8e8abf99adfb8a72d1561e0dfc3be98af10facd47206a0a7fd0770f7557e354b1e32695eaaa49c1c7d04f21d102b4c656d98b11e9d260e918ec45d
   languageName: node
   linkType: hard
 
@@ -6055,7 +6057,7 @@ __metadata:
     "@abinnovision/commitlint-config": ^1.1.0
     "@abinnovision/eslint-config-base": ^2.0.0
     "@abinnovision/eslint-config-typescript": ^2.0.0
-    "@abinnovision/prettier-config": ^1.1.0
+    "@abinnovision/prettier-config": ^2.0.0
     "@commitlint/cli": ^17.7.2
     "@types/eslint": ^8.44.7
     "@types/node": ^20.8.10
