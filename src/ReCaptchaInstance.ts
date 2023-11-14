@@ -1,4 +1,4 @@
-import { IReCaptchaInstance } from "./grecaptcha/grecaptcha";
+import type { IReCaptchaInstance } from "./grecaptcha/grecaptcha";
 
 /**
  * A simple wrapper for the "grecaptcha" object.
@@ -29,8 +29,8 @@ export class ReCaptchaInstance {
 	 */
 	public async execute(action?: string): Promise<string> {
 		return this.recaptcha.enterprise
-			? this.recaptcha.enterprise.execute(this.recaptchaID, { action })
-			: this.recaptcha.execute(this.recaptchaID, { action });
+			? await this.recaptcha.enterprise.execute(this.recaptchaID, { action })
+			: await this.recaptcha.execute(this.recaptchaID, { action });
 	}
 
 	/**
