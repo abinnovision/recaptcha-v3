@@ -68,7 +68,7 @@ jobs:
       - name: Install dependencies
         run: yarn install --immutable
       - name: Run Cypress
-        uses: cypress-io/github-action@v4
+        uses: cypress-io/github-action@v6
         with:
           browser: ${{ matrix.browser }}
 
