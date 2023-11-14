@@ -61,31 +61,19 @@
 		]
 	},
 	"prettier": "@abinnovision/prettier-config",
-	"eslintConfig": {
-		"env": {
-			"mocha": true
-		},
-		"extends": [
-			"@abinnovision/base",
-			"@abinnovision/typescript",
-			"prettier"
-		]
-	},
 	"devDependencies": {
 		"@abinnovision/commitlint-config": "^1.1.0",
-		"@abinnovision/eslint-config-base": "^1.1.0",
-		"@abinnovision/eslint-config-typescript": "^1.1.0",
+		"@abinnovision/eslint-config-base": "^2.0.0",
+		"@abinnovision/eslint-config-typescript": "^2.0.0",
 		"@abinnovision/prettier-config": "^1.1.0",
 		"@commitlint/cli": "^17.7.2",
+		"@types/eslint": "^8.44.7",
 		"@types/node": "^20.8.10",
-		"@typescript-eslint/eslint-plugin": "^5.61.0",
-		"@typescript-eslint/parser": "^5.61.0",
 		"chai": "^4.3.10",
 		"concurrently": "^8.2.2",
 		"cypress": "^12.14.0",
 		"eslint": "^8.53.0",
-		"eslint-config-prettier": "^8.9.0",
-		"eslint-plugin-import": "^2.29.0",
+		"globals": "^13.23.0",
 		"husky": "^8.0.0",
 		"lint-staged": "^13.2.3",
 		"parcel": "^2.10.2",
