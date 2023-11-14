@@ -177,6 +177,8 @@ class ReCaptchaLoader {
 		// Create script element
 		const scriptElement: HTMLScriptElement = document.createElement("script");
 		scriptElement.setAttribute("recaptcha-v3-script", "");
+		scriptElement.setAttribute("async", "");
+		scriptElement.setAttribute("defer", "");
 
 		let scriptBase = "https://www.google.com/recaptcha/api.js";
 
