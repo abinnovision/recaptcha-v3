@@ -76,7 +76,7 @@
 		"globals": "^13.23.0",
 		"husky": "^8.0.0",
 		"lint-staged": "^15.1.0",
-		"parcel": "^2.10.2",
+		"parcel": "^2.10.3",
 		"pinst": "^3.0.0",
 		"prettier": "^2.8.8",
 		"sort-package-json": "^2.6.0",
