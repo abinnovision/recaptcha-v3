@@ -71,7 +71,7 @@
 		"@types/node": "^20.9.0",
 		"chai": "^4.3.10",
 		"concurrently": "^8.2.2",
-		"cypress": "^13.5.0",
+		"cypress": "^13.5.1",
 		"eslint": "^8.53.0",
 		"globals": "^13.23.0",
 		"husky": "^8.0.0",
