@@ -3818,12 +3818,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"globals@npm:^13.19.0, globals@npm:^13.2.0, globals@npm:^13.23.0":
+"globals@npm:^13.19.0, globals@npm:^13.2.0":
   version: 13.23.0
   resolution: "globals@npm:13.23.0"
   dependencies:
     type-fest: "npm:^0.20.2"
   checksum: bf6a8616f4a64959c0b9a8eb4dc8a02e7dd0082385f7f06bc9694d9fceabe39f83f83789322cfe0470914dc8b273b7a29af5570b9e1a0507d3fb7348a64703a3
+  languageName: node
+  linkType: hard
+
+"globals@npm:^13.24.0":
+  version: 13.24.0
+  resolution: "globals@npm:13.24.0"
+  dependencies:
+    type-fest: "npm:^0.20.2"
+  checksum: 62c5b1997d06674fc7191d3e01e324d3eda4d65ac9cc4e78329fa3b5c4fd42a0e1c8722822497a6964eee075255ce21ccf1eec2d83f92ef3f06653af4d0ee28e
   languageName: node
   linkType: hard
 
@@ -6031,7 +6040,7 @@ __metadata:
     concurrently: "npm:^8.2.2"
     cypress: "npm:^13.5.0"
     eslint: "npm:^8.53.0"
-    globals: "npm:^13.23.0"
+    globals: "npm:^13.24.0"
     husky: "npm:^8.0.0"
     lint-staged: "npm:^15.1.0"
     parcel: "npm:^2.10.2"
