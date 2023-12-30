@@ -2614,9 +2614,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cypress@npm:^13.5.0":
-  version: 13.5.0
-  resolution: "cypress@npm:13.5.0"
+"cypress@npm:^13.6.2":
+  version: 13.6.2
+  resolution: "cypress@npm:13.6.2"
   dependencies:
     "@cypress/request": "npm:^3.0.0"
     "@cypress/xvfb": "npm:^1.2.4"
@@ -2663,7 +2663,7 @@ __metadata:
     yauzl: "npm:^2.10.0"
   bin:
     cypress: bin/cypress
-  checksum: b3206079d1118e6734122fdd14a36e4aae09ac65df5d20f7d0b12f980cb83c5d01834372fd41630b91984d66e5707c84ee0a12d62cf60a4866459e54e7accb4e
+  checksum: b6b27f94d98c873cde18a466ab3763e13ee157b78307ae3e3cf93b4fc04cbe1f616c2b7da8cc3354aed1ab2636629ce208533d70bd60cf38ad01675e19e3058d
   languageName: node
   linkType: hard
 
@@ -6029,7 +6029,7 @@ __metadata:
     "@types/node": "npm:^20.9.0"
     chai: "npm:^4.3.10"
     concurrently: "npm:^8.2.2"
-    cypress: "npm:^13.5.0"
+    cypress: "npm:^13.6.2"
     eslint: "npm:^8.53.0"
     globals: "npm:^13.23.0"
     husky: "npm:^8.0.0"
