@@ -68,7 +68,7 @@
 		"@abinnovision/prettier-config": "^2.0.0",
 		"@commitlint/cli": "^18.4.1",
 		"@types/eslint": "^8.44.7",
-		"@types/node": "^20.9.0",
+		"@types/node": "^20.11.5",
 		"chai": "^4.3.10",
 		"concurrently": "^8.2.2",
 		"cypress": "^13.5.0",
