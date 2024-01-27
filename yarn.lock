@@ -1467,12 +1467,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^20.9.0":
-  version: 20.9.0
-  resolution: "@types/node@npm:20.9.0"
+"@types/node@npm:^20.11.7":
+  version: 20.11.7
+  resolution: "@types/node@npm:20.11.7"
   dependencies:
     undici-types: "npm:~5.26.4"
-  checksum: a934f7645ed117a27857147403b0c657ffbca578c8f280e4c21d27dfb43e58dc4f24c4319d4335b8a4fa08e28fb2dc905a5bd5e4bc8878047164c56c1b162139
+  checksum: ff0428c093987f1f6e3400b91450077cf006d7f0e4ff316e20636218562c53761565ceb06bd7a161badf46e6884d78b554c7b1c3a7717cf5cb8c97f461ecd754
   languageName: node
   linkType: hard
 
@@ -6026,7 +6026,7 @@ __metadata:
     "@abinnovision/prettier-config": "npm:^2.0.0"
     "@commitlint/cli": "npm:^18.4.1"
     "@types/eslint": "npm:^8.44.7"
-    "@types/node": "npm:^20.9.0"
+    "@types/node": "npm:^20.11.7"
     chai: "npm:^4.3.10"
     concurrently: "npm:^8.2.2"
     cypress: "npm:^13.5.0"
