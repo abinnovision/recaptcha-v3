@@ -75,7 +75,7 @@
 		"eslint": "^8.53.0",
 		"globals": "^13.23.0",
 		"husky": "^8.0.0",
-		"lint-staged": "^15.1.0",
+		"lint-staged": "^15.2.1",
 		"parcel": "^2.10.2",
 		"pinst": "^3.0.0",
 		"prettier": "^2.8.8",
