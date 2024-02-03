@@ -1458,7 +1458,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^18.11.9, @types/node@npm:^18.17.5":
+"@types/node@npm:^18.11.9":
   version: 18.18.9
   resolution: "@types/node@npm:18.18.9"
   dependencies:
@@ -2614,13 +2614,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cypress@npm:^13.5.0":
-  version: 13.5.0
-  resolution: "cypress@npm:13.5.0"
+"cypress@npm:^13.6.4":
+  version: 13.6.4
+  resolution: "cypress@npm:13.6.4"
   dependencies:
     "@cypress/request": "npm:^3.0.0"
     "@cypress/xvfb": "npm:^1.2.4"
-    "@types/node": "npm:^18.17.5"
     "@types/sinonjs__fake-timers": "npm:8.1.1"
     "@types/sizzle": "npm:^2.3.2"
     arch: "npm:^2.2.0"
@@ -2663,7 +2662,7 @@ __metadata:
     yauzl: "npm:^2.10.0"
   bin:
     cypress: bin/cypress
-  checksum: b3206079d1118e6734122fdd14a36e4aae09ac65df5d20f7d0b12f980cb83c5d01834372fd41630b91984d66e5707c84ee0a12d62cf60a4866459e54e7accb4e
+  checksum: acdc246cf41bf77b95ab78a26ae7cb000c64abfd768ad7cef54830e1fa8d7e89cee64a56d00a9a389ac36ff6ec8bd704d6fa1d5d92123123c8d96ebae6328b8b
   languageName: node
   linkType: hard
 
@@ -6029,7 +6028,7 @@ __metadata:
     "@types/node": "npm:^20.9.0"
     chai: "npm:^4.3.10"
     concurrently: "npm:^8.2.2"
-    cypress: "npm:^13.5.0"
+    cypress: "npm:^13.6.4"
     eslint: "npm:^8.53.0"
     globals: "npm:^13.23.0"
     husky: "npm:^8.0.0"
