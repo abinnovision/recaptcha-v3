@@ -24,7 +24,7 @@
 		"/LICENSE"
 	],
 	"scripts": {
-		"build": "tsc",
+		"build": "tsc --project tsconfig.build.json",
 		"check": "concurrently 'yarn lint:check' 'yarn format:check' 'yarn sort:check'",
 		"demo": "parcel demo/src/index.html",
 		"fix": "concurrently 'yarn lint:fix' 'yarn format:fix' 'yarn sort:fix'",
