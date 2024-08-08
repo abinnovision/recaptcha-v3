@@ -295,12 +295,10 @@ class ReCaptchaLoader {
 		parameters: IReCaptchaExplicitRenderParameters,
 		isEnterprise: boolean
 	): string {
-		// Split the given parameters into a matching interface for the grecaptcha.render function.
+		// Merge the parameters to match the grecaptcha.render function.
 		const augmentedParameters: IRenderParameters = {
 			sitekey: siteKey,
-			badge: parameters.badge,
-			size: parameters.size,
-			tabindex: parameters.tabindex,
+			...parameters,
 		};
 
 		// Differ if an explicit container element is given.
@@ -375,15 +373,11 @@ export interface IReCaptchaLoaderOptions {
 }
 
 /**
- * Describes the parameters for the explicit rendering call. This gives the possibility to set explicit positioning
- * for the badge.
+ * Describes the parameters for the explicit rendering call.
  */
-export interface IReCaptchaExplicitRenderParameters {
+export type IReCaptchaExplicitRenderParameters = {
 	container?: string | Element;
-	badge?: "bottomright" | "bottomleft" | "inline";
-	size?: "invisible";
-	tabindex?: number;
-}
+} & Omit<IRenderParameters, "sitekey">;
 
 /**
  * Only export the recaptcha load and getInstance method to

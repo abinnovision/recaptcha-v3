@@ -51,7 +51,8 @@ export declare interface IExecuteOptions {
  */
 export declare interface IRenderParameters {
 	sitekey: string;
+	theme?: "light" | "dark";
 	badge?: "bottomright" | "bottomleft" | "inline";
-	size?: "invisible";
+	size?: "invisible" | "compact" | "normal";
 	tabindex?: number;
 }
