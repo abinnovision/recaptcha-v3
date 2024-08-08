@@ -67,7 +67,7 @@ jobs:
       - name: Install Playwright
         run: yarn playwright install --with-deps
       - name: Run tests
-        run: yarn test:integration --browser ${{ matrix.browser }}
+        run: yarn test-integration --browser ${{ matrix.browser }}
 
   release:
     name: Release
