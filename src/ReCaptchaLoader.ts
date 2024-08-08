@@ -188,9 +188,7 @@ class ReCaptchaLoader {
 			} else {
 				scriptBase = "https://recaptcha.net/recaptcha/api.js";
 			}
-		}
-
-		if (useEnterprise) {
+		} else if (useEnterprise) {
 			scriptBase = "https://www.google.com/recaptcha/enterprise.js";
 		}
 
