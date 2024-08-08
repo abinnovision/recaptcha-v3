@@ -104,5 +104,7 @@ jobs:
       - name: Publish
         run: |
           # Publish to NPM
-          yarn config set -H --json npmScopes '{"abinnovision": {"npmPublishRegistry": "https://registry.npmjs.org", "npmRegistryServer": "https://registry.npmjs.org", "npmAuthToken": "${{ secrets.NPM_AUTH_TOKEN }}"}}'
+          yarn config set -H npmPublishRegistry "https://registry.npmjs.org"
+          yarn config set -H npmRegistryServer "https://registry.npmjs.org"
+          yarn config set -H npmAuthToken "${{ secrets.NPM_AUTH_TOKEN }}"
           yarn npm publish --access public
