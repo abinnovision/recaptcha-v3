@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.11.1](https://github.com/abinnovision/recaptcha-v3/compare/v1.11.0...v1.11.1) (2024-08-08)
+
+
+### Bug Fixes
+
+* only include files from src folder in dist ([#947](https://github.com/abinnovision/recaptcha-v3/issues/947)) ([3fc6368](https://github.com/abinnovision/recaptcha-v3/commit/3fc636810648550cc09e1409f54758d2864c847c))
+
 ## [1.11.0](https://github.com/abinnovision/recaptcha-v3/compare/v1.10.0...v1.11.0) (2024-08-08)
 
 
