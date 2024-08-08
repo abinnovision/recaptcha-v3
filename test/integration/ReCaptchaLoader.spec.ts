@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-expressions */
-import { expect } from "chai";
+import { beforeEach, describe, expect, it } from "vitest";
 
 import { getInstance, load } from "../../src/ReCaptchaLoader";
 
@@ -27,7 +27,7 @@ describe("ReCaptchaLoader", () => {
 	describe("Action execution", () => {
 		let recaptchaInst: ReCaptchaInstance = null;
 
-		before(async () => {
+		beforeEach(async () => {
 			recaptchaInst = await load(testingSiteKey);
 		});
 
@@ -43,7 +43,6 @@ describe("ReCaptchaLoader", () => {
 
 			expect(response).not.null;
 			expect(response).to.be.a("string");
-			console.log(response);
 		});
 	});
 

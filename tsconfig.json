@@ -7,9 +7,8 @@
 		"target": "es5",
 		"declaration": true,
 		"removeComments": true,
-		"lib": ["es6", "dom"]
+		"lib": ["es6", "dom"],
+		"skipLibCheck": true
 	},
-
-	"include": ["src/**/*"],
-	"exclude": ["node_modules", "demo/*"]
+	"exclude": ["node_modules", "demo/*", "dist"]
 }
