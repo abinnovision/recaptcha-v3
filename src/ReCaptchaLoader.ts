@@ -1,6 +1,9 @@
 import { ReCaptchaInstance } from "./ReCaptchaInstance";
 
-import type { IReCaptchaInstance, IRenderParameters } from "./grecaptcha/grecaptcha";
+import type {
+	IReCaptchaInstance,
+	IRenderParameters,
+} from "./grecaptcha/grecaptcha";
 
 enum ELoadingState {
 	NOT_LOADED,
@@ -34,7 +37,7 @@ class ReCaptchaLoader {
 	 * @param options The options for the loader
 	 * @return The recaptcha wrapper.
 	 */
-	// eslint-disable-next-line @typescript-eslint/promise-function-async
+
 	public static load(
 		siteKey: string,
 		options: IReCaptchaLoaderOptions = {}
@@ -84,7 +87,6 @@ class ReCaptchaLoader {
 		// Throw error if the recaptcha is already loaded
 		const loader = new ReCaptchaLoader();
 		return new Promise((resolve, reject) => {
-			// eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
 			loader
 				.loadScript(
 					siteKey,
@@ -98,7 +100,6 @@ class ReCaptchaLoader {
 
 					// Render the ReCaptcha widget.
 					const widgetID = loader.doExplicitRender(
-						// eslint-disable-next-line no-undef
 						grecaptcha,
 						siteKey,
 						options.explicitRenderParameters
@@ -107,7 +108,6 @@ class ReCaptchaLoader {
 						options.useEnterprise || false
 					);
 
-					// eslint-disable-next-line no-undef
 					const instance = new ReCaptchaInstance(siteKey, widgetID, grecaptcha);
 					ReCaptchaLoader.successfulLoadingConsumers.forEach((v) =>
 						v(instance)
