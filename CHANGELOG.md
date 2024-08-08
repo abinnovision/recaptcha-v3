@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.11.3](https://github.com/abinnovision/recaptcha-v3/compare/v1.11.2...v1.11.3) (2024-08-08)
+
+
+### Bug Fixes
+
+* support enterprise on recaptcha.net ([#951](https://github.com/abinnovision/recaptcha-v3/issues/951)) ([6928b38](https://github.com/abinnovision/recaptcha-v3/commit/6928b38e02ac6cde4e883ef16dcc31371cdd442a))
+
 ## [1.11.2](https://github.com/abinnovision/recaptcha-v3/compare/v1.11.1...v1.11.2) (2024-08-08)
 
 
