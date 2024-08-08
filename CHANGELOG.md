@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.11.2](https://github.com/abinnovision/recaptcha-v3/compare/v1.11.1...v1.11.2) (2024-08-08)
+
+
+### Bug Fixes
+
+* extend render parameters ([#949](https://github.com/abinnovision/recaptcha-v3/issues/949)) ([64c0271](https://github.com/abinnovision/recaptcha-v3/commit/64c027122af11f00c322c10095c44951e9c956ca))
+
 ## [1.11.1](https://github.com/abinnovision/recaptcha-v3/compare/v1.11.0...v1.11.1) (2024-08-08)
 
 
