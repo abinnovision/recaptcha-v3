@@ -71,7 +71,7 @@
 		"@types/node": "^22.2.0",
 		"@vitest/browser": "^2.0.5",
 		"concurrently": "^8.2.2",
-		"eslint": "^9.8.0",
+		"eslint": "^9.9.0",
 		"globals": "^15.9.0",
 		"husky": "^9.1.4",
 		"lint-staged": "^15.2.8",
