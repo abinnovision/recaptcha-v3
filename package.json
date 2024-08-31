@@ -66,7 +66,7 @@
 		"@abinnovision/eslint-config-base": "^2.1.0",
 		"@abinnovision/eslint-config-typescript": "^2.1.0",
 		"@abinnovision/prettier-config": "^2.1.0",
-		"@commitlint/cli": "^19.4.0",
+		"@commitlint/cli": "^19.4.1",
 		"@types/eslint": "^9.6.1",
 		"@types/node": "^22.5.1",
 		"@vitest/browser": "^2.0.5",
