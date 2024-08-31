@@ -134,12 +134,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commitlint/cli@npm:^19.4.0":
-  version: 19.4.0
-  resolution: "@commitlint/cli@npm:19.4.0"
+"@commitlint/cli@npm:^19.4.1":
+  version: 19.4.1
+  resolution: "@commitlint/cli@npm:19.4.1"
   dependencies:
     "@commitlint/format": "npm:^19.3.0"
-    "@commitlint/lint": "npm:^19.2.2"
+    "@commitlint/lint": "npm:^19.4.1"
     "@commitlint/load": "npm:^19.4.0"
     "@commitlint/read": "npm:^19.4.0"
     "@commitlint/types": "npm:^19.0.3"
@@ -147,7 +147,7 @@ __metadata:
     yargs: "npm:^17.0.0"
   bin:
     commitlint: cli.js
-  checksum: be6e7cdc11b20d29f840eaff4d8231a8180f1355100e05a1b5652a4fc19d63c254b11e47bb29c44de073998cd8d13f62b4b1f0ea404f39a54064b0d56e3a1baf
+  checksum: 9199d3c6587476ba94dca4f55928d4461a6f380a96861e20a11d363ff9744b8f9a5955407510020402c15b226c5505e4050a9a21dd7d096f9bfc30bb3571edf7
   languageName: node
   linkType: hard
 
@@ -212,15 +212,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commitlint/lint@npm:^19.2.2":
-  version: 19.2.2
-  resolution: "@commitlint/lint@npm:19.2.2"
+"@commitlint/lint@npm:^19.4.1":
+  version: 19.4.1
+  resolution: "@commitlint/lint@npm:19.4.1"
   dependencies:
     "@commitlint/is-ignored": "npm:^19.2.2"
     "@commitlint/parse": "npm:^19.0.3"
-    "@commitlint/rules": "npm:^19.0.3"
+    "@commitlint/rules": "npm:^19.4.1"
     "@commitlint/types": "npm:^19.0.3"
-  checksum: 9bf2ffa0f6cdde3d53d755b95ca717afd193f4560ae5bb0f5ffd7f1bbd571ddc99b27417733c70e1adbd74a5197e4525493b2dfc116680a939db7728fefa805c
+  checksum: 57f264eafbd787015d589f663917e19e5f246b3ffd162064cb004009532e541191b13d482174f43a7f5953accf183682d580bf7914552061987efc58811659d8
   languageName: node
   linkType: hard
 
@@ -287,16 +287,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commitlint/rules@npm:^19.0.3":
-  version: 19.0.3
-  resolution: "@commitlint/rules@npm:19.0.3"
+"@commitlint/rules@npm:^19.4.1":
+  version: 19.4.1
+  resolution: "@commitlint/rules@npm:19.4.1"
   dependencies:
     "@commitlint/ensure": "npm:^19.0.3"
     "@commitlint/message": "npm:^19.0.0"
     "@commitlint/to-lines": "npm:^19.0.0"
     "@commitlint/types": "npm:^19.0.3"
     execa: "npm:^8.0.1"
-  checksum: 218033d96b0bae7dbea0e46483f8af823c17b492e4b0c4dca93a6312876d051cc88f4272d009e7eb06ff05585ec511aedd703132be17c7248698a4eac909986b
+  checksum: c5626278aa6ee08194f1b7880345fcbc64b19a2f7ca52f54cd027fb19337fb60008b55a2fe7a4159dd227d41ffb48b30e51347101a58f842d37991a416a678a7
   languageName: node
   linkType: hard
 
@@ -6007,7 +6007,7 @@ __metadata:
     "@abinnovision/eslint-config-base": "npm:^2.1.0"
     "@abinnovision/eslint-config-typescript": "npm:^2.1.0"
     "@abinnovision/prettier-config": "npm:^2.1.0"
-    "@commitlint/cli": "npm:^19.4.0"
+    "@commitlint/cli": "npm:^19.4.1"
     "@types/eslint": "npm:^9.6.1"
     "@types/node": "npm:^22.5.1"
     "@vitest/browser": "npm:^2.0.5"
