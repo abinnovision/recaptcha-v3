@@ -1877,13 +1877,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/eslint@npm:^9.6.0":
-  version: 9.6.0
-  resolution: "@types/eslint@npm:9.6.0"
+"@types/eslint@npm:^9.6.1":
+  version: 9.6.1
+  resolution: "@types/eslint@npm:9.6.1"
   dependencies:
     "@types/estree": "npm:*"
     "@types/json-schema": "npm:*"
-  checksum: 39fc797c671ec9c9184802b4974748cf45ee1b11d7aaaaede44426abcafd07ec7c18eb090e8f5b3387b51637ce3fdf54499472d8dd58a928f0d005cbacb573b4
+  checksum: 719fcd255760168a43d0e306ef87548e1e15bffe361d5f4022b0f266575637acc0ecb85604ac97879ee8ae83c6a6d0613b0ed31d0209ddf22a0fe6d608fc56fe
   languageName: node
   linkType: hard
 
@@ -6008,7 +6008,7 @@ __metadata:
     "@abinnovision/eslint-config-typescript": "npm:^2.1.0"
     "@abinnovision/prettier-config": "npm:^2.1.0"
     "@commitlint/cli": "npm:^19.4.0"
-    "@types/eslint": "npm:^9.6.0"
+    "@types/eslint": "npm:^9.6.1"
     "@types/node": "npm:^22.5.1"
     "@vitest/browser": "npm:^2.0.5"
     concurrently: "npm:^8.2.2"
