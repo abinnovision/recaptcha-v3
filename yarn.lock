@@ -1926,12 +1926,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^22.5.1":
-  version: 22.5.1
-  resolution: "@types/node@npm:22.5.1"
+"@types/node@npm:^22.5.4":
+  version: 22.5.4
+  resolution: "@types/node@npm:22.5.4"
   dependencies:
     undici-types: "npm:~6.19.2"
-  checksum: adcec0e8a9ec9112a8cc9529b7d633356c2377fe69ca6e6de4ee39cacb8c86a18a9b7ba658e2456f8ad90d5b76767b268f517b0336c6db787cb056dcdfed107a
+  checksum: d46e0abf437b36bdf89011287aa43873d68ea6f2521a11b5c9a033056fd0d07af36daf51439010e8d41c62c55d0b00e9b5e09ed00bb2617723f73f28a873903a
   languageName: node
   linkType: hard
 
@@ -6009,7 +6009,7 @@ __metadata:
     "@abinnovision/prettier-config": "npm:^2.1.0"
     "@commitlint/cli": "npm:^19.4.1"
     "@types/eslint": "npm:^9.6.1"
-    "@types/node": "npm:^22.5.1"
+    "@types/node": "npm:^22.5.4"
     "@vitest/browser": "npm:^2.0.5"
     concurrently: "npm:^8.2.2"
     eslint: "npm:^9.9.1"
