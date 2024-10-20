@@ -6,6 +6,11 @@ on:
   pull_request:
     branches:
       - master
+    types:
+      - opened
+      - edited
+      - reopened
+      - synchronize
 
 jobs:
   lint-commits:
@@ -25,20 +30,28 @@ jobs:
       repository-projects: write
       contents: write
     steps:
+      - uses: actions/checkout@v4
+      - id: status
+        name: Resolve current status
+        run: |
+          echo "HAS_REVIEWS=$(if [[ $(gh pr status --json reviews | jq '.currentBranch.reviews | length') -eq '0' ]];then echo 'false'; else echo 'true'; fi)" >> $GITHUB_OUTPUT
+          echo "LAST_REVIEW_DISMISSED=$(if [[ $(gh pr status --json reviews | jq '.currentBranch.reviews[-1].state' | sed 's/"//g') -eq 'DISMISSED' ]];then echo 'true'; else echo 'false'; fi)" >> $GITHUB_OUTPUT
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
       - name: Metadata
         id: metadata
-        uses: dependabot/fetch-metadata@v1.6.0
+        uses: dependabot/fetch-metadata@v2.2.0
         with:
           github-token: "${{ secrets.GITHUB_TOKEN }}"
       - name: Enable auto-rebase
         id: enable-auto-rebase
-        run: gh pr merge --auto --rebase "$PR_URL"
+        run: gh pr merge --auto --squash "$PR_URL"
         env:
           PR_URL: ${{github.event.pull_request.html_url}}
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
       - name: "Approve (minor & patch)"
         id: approve
-        if: steps.metadata.outputs.update-type == 'version-update:semver-minor' || steps.metadata.outputs.update-type == 'version-update:semver-patch'
+        if: (steps.status.outputs.HAS_REVIEWS == 'false' || steps.status.outputs.LAST_REVIEW_DISMISSED == 'true') && steps.metadata.outputs.update-type == 'version-update:semver-minor' || steps.metadata.outputs.update-type == 'version-update:semver-patch'
         run: gh pr review --approve "$PR_URL"
         env:
           PR_URL: ${{github.event.pull_request.html_url}}
