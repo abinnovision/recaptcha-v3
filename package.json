@@ -80,7 +80,7 @@
 		"playwright": "^1.48.1",
 		"prettier": "^3.3.3",
 		"sort-package-json": "^2.10.1",
-		"typescript": "^5.5.4",
+		"typescript": "^5.6.3",
 		"vitest": "^2.0.5"
 	},
 	"packageManager": "yarn@4.5.1"
