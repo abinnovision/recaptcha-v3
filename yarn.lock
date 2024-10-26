@@ -12,12 +12,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@abinnovision/commitlint-config@npm:^2.2.0":
-  version: 2.2.0
-  resolution: "@abinnovision/commitlint-config@npm:2.2.0"
+"@abinnovision/commitlint-config@npm:^2.2.1":
+  version: 2.2.1
+  resolution: "@abinnovision/commitlint-config@npm:2.2.1"
   dependencies:
-    "@commitlint/config-conventional": "npm:^19.2.2"
-  checksum: 10/8938f4ad7f7e0b14cf7cafa4e2dd0c1317679972cc18a8e6cbd3c5666585a3abca90c8e925d15608ef8422c87fffb2a7e05ecc4421941a7e0bd5ec443c7c6337
+    "@commitlint/config-conventional": "npm:^19.5.0"
+  checksum: 10/252ab10355f16bf834cf1a8507b6527d87e707b7ecefb6e61d5f7e6d6db5a0f84a2d4829736668f8f3e0b43eb6582ba07ed945e508b6cad35d3f5fe95188d00c
   languageName: node
   linkType: hard
 
@@ -151,13 +151,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commitlint/config-conventional@npm:^19.2.2":
-  version: 19.2.2
-  resolution: "@commitlint/config-conventional@npm:19.2.2"
+"@commitlint/config-conventional@npm:^19.5.0":
+  version: 19.5.0
+  resolution: "@commitlint/config-conventional@npm:19.5.0"
   dependencies:
-    "@commitlint/types": "npm:^19.0.3"
+    "@commitlint/types": "npm:^19.5.0"
     conventional-changelog-conventionalcommits: "npm:^7.0.2"
-  checksum: 10/9ee17ba00f9182fda544c247bc1d130f65d1bb0d4d9953d5c3d1e4fd36211386c1e849a28e823574546a8bc3df3d0c269122258e21a55d3c12b3e64c00ab50b6
+  checksum: 10/5844fb51347677dd28f970a50528fbc44b9b415a8a5fd6fea6c7f6a2a11357956748eda9d1d6ae499430659b0aa78bfa7dcf8abf599951e7f34a581e60bf57da
   languageName: node
   linkType: hard
 
@@ -323,6 +323,16 @@ __metadata:
     "@types/conventional-commits-parser": "npm:^5.0.0"
     chalk: "npm:^5.3.0"
   checksum: 10/44e67f4861f9b137f43a441f8ab255676b7a276c82ca46ba7846ca1057d170af92a87d3e2a1378713dc4e33a68c8af513683cb96dcd29544e48e2c825109ea6f
+  languageName: node
+  linkType: hard
+
+"@commitlint/types@npm:^19.5.0":
+  version: 19.5.0
+  resolution: "@commitlint/types@npm:19.5.0"
+  dependencies:
+    "@types/conventional-commits-parser": "npm:^5.0.0"
+    chalk: "npm:^5.3.0"
+  checksum: 10/a26f33ec6987d7d93bdbd7e1b177cfac30ca056ea383faf343c6a09c0441aa057a24be1459c3d4e7e91edd2ecf8d6c4dd670948c9d22646d64767137c6db098a
   languageName: node
   linkType: hard
 
@@ -6026,7 +6036,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "recaptcha-v3@workspace:."
   dependencies:
-    "@abinnovision/commitlint-config": "npm:^2.2.0"
+    "@abinnovision/commitlint-config": "npm:^2.2.1"
     "@abinnovision/eslint-config-base": "npm:^2.1.0"
     "@abinnovision/eslint-config-typescript": "npm:^2.1.0"
     "@abinnovision/prettier-config": "npm:^2.1.0"

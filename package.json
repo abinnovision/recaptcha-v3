@@ -62,7 +62,7 @@
 	},
 	"prettier": "@abinnovision/prettier-config",
 	"devDependencies": {
-		"@abinnovision/commitlint-config": "^2.2.0",
+		"@abinnovision/commitlint-config": "^2.2.1",
 		"@abinnovision/eslint-config-base": "^2.1.0",
 		"@abinnovision/eslint-config-typescript": "^2.1.0",
 		"@abinnovision/prettier-config": "^2.1.0",
