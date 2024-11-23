@@ -4586,12 +4586,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"husky@npm:^9.1.5":
-  version: 9.1.5
-  resolution: "husky@npm:9.1.5"
+"husky@npm:^9.1.7":
+  version: 9.1.7
+  resolution: "husky@npm:9.1.7"
   bin:
     husky: bin.js
-  checksum: 10/21a3036dd03141c41347693bde301c62502b4e3bffb87310e7e42b3011c2e55691af2e4a9a5f39bd94e6b1d69e3cfc26ec636d8e164e19737b26f11c556caf10
+  checksum: 10/c2412753f15695db369634ba70f50f5c0b7e5cb13b673d0826c411ec1bd9ddef08c1dad89ea154f57da2521d2605bd64308af748749b27d08c5f563bcd89975f
   languageName: node
   linkType: hard
 
@@ -6401,7 +6401,7 @@ __metadata:
     concurrently: "npm:^8.2.2"
     eslint: "npm:^9.14.0"
     globals: "npm:^15.12.0"
-    husky: "npm:^9.1.5"
+    husky: "npm:^9.1.7"
     lint-staged: "npm:^15.2.10"
     parcel: "npm:^2.13.0"
     pinst: "npm:^3.0.0"
