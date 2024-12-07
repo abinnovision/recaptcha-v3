@@ -78,7 +78,7 @@
 		"parcel": "^2.13.2",
 		"pinst": "^3.0.0",
 		"playwright": "^1.49.0",
-		"prettier": "^3.4.1",
+		"prettier": "^3.4.2",
 		"sort-package-json": "^2.12.0",
 		"typescript": "^5.7.2",
 		"vitest": "^2.0.5"
