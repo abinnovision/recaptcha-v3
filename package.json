@@ -70,7 +70,7 @@
 		"@types/eslint": "^9.6.1",
 		"@types/node": "^22.10.1",
 		"@vitest/browser": "^2.0.5",
-		"concurrently": "^8.2.2",
+		"concurrently": "^9.1.0",
 		"eslint": "^9.14.0",
 		"globals": "^15.13.0",
 		"husky": "^9.1.7",
