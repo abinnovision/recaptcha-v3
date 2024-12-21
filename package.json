@@ -75,7 +75,7 @@
 		"globals": "^15.13.0",
 		"husky": "^9.1.7",
 		"lint-staged": "^15.2.11",
-		"parcel": "^2.13.2",
+		"parcel": "^2.13.3",
 		"pinst": "^3.0.0",
 		"playwright": "^1.49.1",
 		"prettier": "^3.4.2",
