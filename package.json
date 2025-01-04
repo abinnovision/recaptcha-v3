@@ -69,7 +69,7 @@
 		"@commitlint/cli": "^19.6.1",
 		"@types/eslint": "^9.6.1",
 		"@types/node": "^22.10.5",
-		"@vitest/browser": "^2.0.5",
+		"@vitest/browser": "^2.1.8",
 		"concurrently": "^8.2.2",
 		"eslint": "^9.17.0",
 		"globals": "^15.14.0",
