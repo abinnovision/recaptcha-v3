@@ -6415,7 +6415,7 @@ __metadata:
     pinst: "npm:^3.0.0"
     playwright: "npm:^1.50.1"
     prettier: "npm:^3.5.2"
-    sort-package-json: "npm:^2.14.0"
+    sort-package-json: "npm:^2.15.1"
     typescript: "npm:^5.8.2"
     vitest: "npm:^2.0.5"
   languageName: unknown
@@ -6879,9 +6879,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"sort-package-json@npm:^2.14.0":
-  version: 2.14.0
-  resolution: "sort-package-json@npm:2.14.0"
+"sort-package-json@npm:^2.15.1":
+  version: 2.15.1
+  resolution: "sort-package-json@npm:2.15.1"
   dependencies:
     detect-indent: "npm:^7.0.1"
     detect-newline: "npm:^4.0.0"
@@ -6893,7 +6893,7 @@ __metadata:
     tinyglobby: "npm:^0.2.9"
   bin:
     sort-package-json: cli.js
-  checksum: 10/f528be0e41840c6fa7f2a8f0d22110f9cc7d43d0cefe69c9f9f7d59e6680097c9839473d24749cfe611613c0cdf67ea9d28b13f97e9b8bcd20eb7be2ed52a214
+  checksum: 10/3378565a07368e00eeb625e6b85d1edf9a3bf9f88ced32423bd3036ddb8c674fb8c0fb559044ef939e6de20bb7550423e992f4abd19cff2398d006f0fe8afc82
   languageName: node
   linkType: hard
 
