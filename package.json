@@ -68,7 +68,7 @@
 		"@abinnovision/prettier-config": "^2.1.0",
 		"@commitlint/cli": "^19.8.1",
 		"@types/eslint": "^9.6.1",
-		"@types/node": "^22.15.17",
+		"@types/node": "^22.15.18",
 		"@vitest/browser": "^2.0.5",
 		"concurrently": "^8.2.2",
 		"eslint": "^9.27.0",
