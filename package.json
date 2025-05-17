@@ -79,7 +79,7 @@
 		"pinst": "^3.0.0",
 		"playwright": "^1.52.0",
 		"prettier": "^3.5.3",
-		"sort-package-json": "^2.15.1",
+		"sort-package-json": "^3.2.1",
 		"typescript": "^5.8.3",
 		"vitest": "^2.0.5"
 	},
