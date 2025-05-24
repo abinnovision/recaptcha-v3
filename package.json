@@ -72,7 +72,7 @@
 		"@vitest/browser": "^2.0.5",
 		"concurrently": "^8.2.2",
 		"eslint": "^9.27.0",
-		"globals": "^15.15.0",
+		"globals": "^16.1.0",
 		"husky": "^9.1.7",
 		"lint-staged": "^15.5.2",
 		"parcel": "^2.15.1",
