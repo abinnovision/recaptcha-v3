@@ -81,7 +81,7 @@
 		"prettier": "^3.6.2",
 		"sort-package-json": "^2.15.1",
 		"typescript": "^5.9.2",
-		"vitest": "^2.0.5"
+		"vitest": "^2.1.9"
 	},
 	"packageManager": "yarn@4.5.1"
 }
